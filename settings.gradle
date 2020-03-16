@@ -1,0 +1,3 @@
+rootProject.name='papl'
+include ':app'
+include ':openCVLibrary24136'
