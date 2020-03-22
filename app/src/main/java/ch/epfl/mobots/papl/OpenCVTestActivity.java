@@ -40,6 +40,8 @@ public class OpenCVTestActivity extends AppCompatActivity {
         Log.i(TAG, "Entering applyFilter");
         Mat img = null;
 
+        Mat img2 = new Mat();
+
         try {
             img = Utils.loadResource(getApplicationContext(), R.drawable.test);
         } catch (IOException e) {

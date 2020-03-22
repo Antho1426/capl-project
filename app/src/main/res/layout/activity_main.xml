@@ -13,15 +13,18 @@
         android:text="Welcome to the PaPL app !"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
 
     <Button
         android:id="@+id/btn_free_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
         android:text="Free Game"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,11 +46,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="StartOpenCVTest"
-        android:text="OpenCV test"
+        android:text="Test - OpenCV"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_arena_games" />
+
+    <Button
+        android:id="@+id/btn_takeandloadpicture_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="StartTakeAndLoadPictureTest"
+        android:text="Test - Take and load picture"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_opencv_test" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
