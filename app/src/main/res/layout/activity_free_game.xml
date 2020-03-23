@@ -13,7 +13,7 @@
         android:layout_weight="1" />
 
     <LinearLayout
-        android:id="@+id/layoutEquation0"
+        android:id="@+id/layout0"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -26,10 +26,9 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_camera_intent"
+            android:id="@+id/btn_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="openCameraByIntent"
             android:text="Camera"
             android:textAllCaps="false"
             android:visibility="visible" />
@@ -38,7 +37,6 @@
             android:id="@+id/btn_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="openGallery"
             android:text="Gallery"
             android:textAllCaps="false" />
 
@@ -63,21 +61,47 @@
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <ImageView
-        android:id="@+id/displayImageView"
-        android:layout_width="448dp"
-        android:layout_height="379dp"
-        android:layout_gravity="center_vertical"/>
 
     <Space
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <ImageView
+            android:id="@+id/displayImageView"
+            android:layout_width="600dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
 
 
 

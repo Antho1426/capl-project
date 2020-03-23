@@ -14,12 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-        <!-- *********************************************************************************** -->
-        <!-- Activities -->
-
+        <activity android:name=".TakeAndLoadPictureTestActivity"></activity>
+        <activity
+            android:name=".OpenCVTestActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".FreeGameActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="fullSensor">
@@ -29,29 +31,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:screenOrientation="fullSensor" />
 
-        <activity
-            android:name=".FreeGameActivity"
-            android:screenOrientation="landscape"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".OpenCVTestActivity"
-            android:screenOrientation="fullSensor" />
-
-        <activity
-            android:name=".TakeAndLoadPictureTestActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-
-        <!-- *********************************************************************************** -->
-
-
-
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="ch.epfl.mobots.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

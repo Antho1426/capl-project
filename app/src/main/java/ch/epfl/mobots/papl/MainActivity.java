@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btnFreeGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToFreeGameActivity();
+                moveToGameActivity();
             }
         });
 
@@ -34,14 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    // Method for the setOnClickListener leading from MainActivity to FreeGameActivity
-    private void moveToFreeGameActivity() {
+
+    private void moveToGameActivity() {
         Intent intent = new Intent(MainActivity.this, FreeGameActivity.class);
         startActivity(intent);
     }
-
-
-
 
 
     // XML callback leading from MainActivity to OpenCVTestActivity
@@ -51,17 +48,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
     // XML callback leading from MainActivity to TakeAndLoadPictureTestActivity
     public void StartTakeAndLoadPictureTest(View view) {
         Intent intentToDeviceListActivity = new Intent(this, TakeAndLoadPictureTestActivity.class);
         startActivityForResult(intentToDeviceListActivity, START_OPENCV_ACTIVITY);
     }
-
-
-
-
 }
 
