@@ -14,32 +14,36 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
-import static android.os.Environment.getExternalStoragePublicDirectory;
-
 public class FreeGameActivity extends AppCompatActivity {
+
+
+    public static boolean computer_vision_completed = false;
+
 
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
@@ -48,10 +52,14 @@ public class FreeGameActivity extends AppCompatActivity {
 
     ImageView selectedImage;
     Uri imageUri;
-    Bitmap grayBitmap, imageBitmap;
+    Bitmap imageBitmap, croppedBitmap, croppedBitmap_resized; //, grayBitmap
 
-    Button cameraBtn, galleryBtn;
+    Button cameraBtn, galleryBtn, computerVisionBtn;
     String currentPhotoPath; // absolute path of the photo
+
+    private TextView textViewIdentifiedCommands;
+
+    private ProgressBar spinner;
 
 
 
@@ -63,10 +71,20 @@ public class FreeGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_free_game);
 
         selectedImage = findViewById(R.id.displayImageView);
+
         cameraBtn = findViewById(R.id.btn_camera);
         galleryBtn = findViewById(R.id.btn_gallery);
+        computerVisionBtn = findViewById(R.id.btn_computer_vision);
+
+        textViewIdentifiedCommands = findViewById(R.id.text_view_identified_commands);
+
+        // Info for wheel spinner: https://www.tutorialspoint.com/android/android_loading_spinner.htm
+        spinner = findViewById(R.id.progressBar);
+        spinner.setVisibility(View.INVISIBLE);
+
 
         OpenCVLoader.initDebug();
+
 
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,37 +104,93 @@ public class FreeGameActivity extends AppCompatActivity {
         });
 
 
+        computerVisionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(FreeGameActivity.this, "Entering computer vision phase...", Toast.LENGTH_SHORT).show();
+                spinner.setVisibility(View.VISIBLE);
+
+                executeTilesIdentification();
+
+                spinner.setVisibility(View.INVISIBLE);
+
+
+
+            }
+        });
+
+
 
     }
 
 
 
 
-    public void computerVision(View view) {
+
+
+
+
+    public void executeTilesIdentification() {
+
         if (selectedImage.getDrawable() != null) {
-            Mat Rgba = new Mat();
-            Mat grayMat = new Mat();
+
+
+
+            // computer vision part not completed yet
+            computer_vision_completed = false;
+
 
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inDither = false;
             o.inSampleSize = 4;
 
-            int width = imageBitmap.getWidth();
-            int height = imageBitmap.getHeight();
-
-            grayBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-
             // Bitmap to Mat
-            Utils.bitmapToMat(imageBitmap, Rgba);
+            Mat image = new Mat();
+            Utils.bitmapToMat(imageBitmap, image);
 
-            Imgproc.cvtColor(Rgba, grayMat, Imgproc.COLOR_RGB2GRAY);
+            //int width = imageBitmap.getWidth();
+            int width = selectedImage.getWidth();
+            //int height = imageBitmap.getHeight();
 
-            Utils.matToBitmap(grayMat, grayBitmap);
+            // Computer vision part on the newly created Mat object
+            //Mat grayMat = new Mat();
+            //Imgproc.cvtColor(image, grayMat, Imgproc.COLOR_RGB2GRAY);
+            //Utils.matToBitmap(grayMat, grayBitmap);
 
-            selectedImage.setImageBitmap(grayBitmap);
+            //-----
+            //String[] commands = ComputerVision.TilesIdentification(image);
+            Pair<String[], Mat> result = ComputerVision.TilesIdentification(image); // "How to return multiple objects from a Java method?" --> cf.: https://stackoverflow.com/questions/457629/how-to-return-multiple-objects-from-a-java-method
+            String[] commands = result.first;
+            Mat cropped = result.second;
+            textViewIdentifiedCommands.setText(Arrays.toString(commands));
+            //-----
+
+            //int height = 30;
+            //int number_of_tiles = commands.length;
+            //int width = height * (45/70) * number_of_tiles;
+            //grayBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            //
+            //Utils.matToBitmap(grayMat, grayBitmap);
+            //
+            //selectedImage.setImageBitmap(grayBitmap);
+
+            croppedBitmap = Bitmap.createBitmap(cropped.cols(), cropped.rows(), Bitmap.Config.RGB_565);
+            //croppedBitmap = Bitmap.createBitmap(width, (int) (cropped.rows()*(double)width/cropped.cols()), Bitmap.Config.RGB_565);
+            Utils.matToBitmap(cropped, croppedBitmap);
+            int height = (int) (cropped.rows()*(double)width/cropped.cols());
+            croppedBitmap_resized = Bitmap.createScaledBitmap(croppedBitmap, width, height, true);
+            selectedImage.setImageBitmap(croppedBitmap_resized);
+
+            // computer vision now completed
+            computer_vision_completed = true;
+
+
+
         }
-    }
 
+    }
 
 
 
@@ -155,17 +229,17 @@ public class FreeGameActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data!=null) {
-            imageUri = data.getData();
-            try{
-                // Convert Uri to Bitmap
-                imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-
-            selectedImage.setImageBitmap(imageBitmap);
-        }
+//        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data!=null) {
+//            imageUri = data.getData();
+//            try{
+//                // Convert Uri to Bitmap
+//                imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+//            } catch(IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            selectedImage.setImageBitmap(imageBitmap);
+//        }
 
 
 
@@ -193,6 +267,31 @@ public class FreeGameActivity extends AppCompatActivity {
 
                 //mediaScanIntent.setData(contentUri);
                 //this.sendBroadcast(mediaScanIntent);
+
+
+                // Pre-processing (for image coming from camera)
+                //--------------------------------------
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inDither = false;
+                o.inSampleSize = 4;
+                // Bitmap to Mat
+                Mat image = new Mat();
+                Utils.bitmapToMat(imageBitmap, image);
+                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
+                if (ok_for_tiles_identification) {
+                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
+                    // Making consequently the computerVisionBtn clickable
+                    computerVisionBtn.setEnabled(true);
+                    spinner.setVisibility(View.VISIBLE);
+                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Computer Vision' (this might take a few second to execute then)");
+                } else {
+                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
+                    // Making consequently the computerVisionBtn NOT clickable
+                    computerVisionBtn.setEnabled(false);
+                }
+                //--------------------------------------
+
+
             }
         }
 
@@ -214,6 +313,29 @@ public class FreeGameActivity extends AppCompatActivity {
                 //**************
 
                 //selectedImage.setImageURI(contentUri);
+
+
+                // Pre-processing for image coming from gallery
+                //--------------------------------------
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inDither = false;
+                o.inSampleSize = 4;
+                // Bitmap to Mat
+                Mat image = new Mat();
+                Utils.bitmapToMat(imageBitmap, image);
+                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
+                if (ok_for_tiles_identification) {
+                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
+                    // Making consequently the computerVisionBtn clickable
+                    computerVisionBtn.setEnabled(true);
+                    spinner.setVisibility(View.VISIBLE);
+                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Computer Vision' (this might take a few second to execute then)");
+                } else {
+                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
+                    // Making consequently the computerVisionBtn NOT clickable
+                    computerVisionBtn.setEnabled(false);
+                }
+                //--------------------------------------
             }
         }
     }
@@ -279,9 +401,6 @@ public class FreeGameActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
 
 
 

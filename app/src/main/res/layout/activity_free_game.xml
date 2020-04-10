@@ -44,15 +44,17 @@
             android:id="@+id/btn_computer_vision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="computerVision"
             android:text="Computer vision"
             android:textAllCaps="false" />
 
-        <TextView
-            android:id="@+id/text_view_identified_commands"
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Identified commands" />
+            android:indeterminate="true"
+            android:progressDrawable="@drawable/circular_progress_bar" />
 
         <Space
             android:layout_width="match_parent"
@@ -78,11 +80,13 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
 
         <ImageView
             android:id="@+id/displayImageView"
+            android:layout_weight="2"
+            android:scaleType="fitCenter"
             android:layout_width="600dp"
             android:layout_height="400dp"
             android:layout_gravity="center_horizontal" />
@@ -92,6 +96,17 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
+        <TextView
+            android:id="@+id/text_view_identified_commands"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Identified commands" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4" />
 
 
     </LinearLayout>
