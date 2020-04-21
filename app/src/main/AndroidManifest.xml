@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
 
     <application
         android:name=".ComputerVision"
@@ -15,7 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TakeAndLoadPictureTestActivity"></activity>
+        <activity android:name=".ProgressBarTestActivity"></activity>
+        <activity
+            android:name=".TakeAndLoadPictureTestActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".TakeAndLoadPictureTestActivity_2"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".OpenCVTestActivity"
             android:screenOrientation="fullSensor" />
@@ -25,7 +36,8 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".SplashScreenActivity"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +46,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

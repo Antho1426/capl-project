@@ -27,7 +27,7 @@
 
         <Button
             android:id="@+id/btn_camera"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Camera"
             android:textAllCaps="false"
@@ -35,14 +35,14 @@
 
         <Button
             android:id="@+id/btn_gallery"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Gallery"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btn_computer_vision"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Computer vision"
             android:textAllCaps="false" />
