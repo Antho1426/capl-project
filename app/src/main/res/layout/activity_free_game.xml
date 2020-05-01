@@ -1,16 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:background="@color/pad_background"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="horizontal"
-    tools:context=".FreeGameActivity">
+    android:paddingBottom="10dip"
+    android:paddingLeft="10dip"
+    android:paddingTop="10dip">
 
     <Space
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
+
+
+    <LinearLayout
+        android:id="@+id/layoutLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_weight="0"
+        android:orientation="vertical">
+
+
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="1." />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="2." />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="3." />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/layout0"
@@ -25,27 +105,38 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/btn_camera"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Camera"
-            android:textAllCaps="false"
-            android:visibility="visible" />
 
-        <Button
-            android:id="@+id/btn_gallery"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Gallery"
-            android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/btn_computer_vision"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Computer vision"
-            android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_camera"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Camera"
+                android:textAllCaps="false"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_gallery"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Gallery"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_computer_vision"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Identify tiles"
+                android:textAllCaps="false" />
+
+
+            <Button
+                android:id="@+id/btn_send_commands"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Send commands"
+                android:textAllCaps="false" />
 
 
         <ProgressBar
@@ -56,6 +147,31 @@
             android:indeterminate="true"
             android:progressDrawable="@drawable/circular_progress_bar" />
 
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/my_frame"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:background="@color/pad_background" >
+
+            <ImageView
+                android:id="@+id/gamepad_mask"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                android:src="@drawable/gamepad_slim_mask"
+                />
+            <ImageView
+                android:id="@+id/gamepad"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gamepad_slim"
+                />
+
+        </FrameLayout>
+
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -64,10 +180,20 @@
     </LinearLayout>
 
 
+
+
+
+
+
+
+
+
     <Space
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
+
+
 
     <LinearLayout
         android:id="@+id/layout1"
@@ -87,8 +213,8 @@
             android:id="@+id/displayImageView"
             android:layout_weight="2"
             android:scaleType="fitCenter"
-            android:layout_width="600dp"
-            android:layout_height="400dp"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal" />
 
         <Space
@@ -98,6 +224,7 @@
 
         <TextView
             android:id="@+id/text_view_identified_commands"
+            android:textColor="@color/white"
             android:layout_width="600dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -112,10 +239,15 @@
     </LinearLayout>
 
 
+
     <Space
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
+
+
+
+
 
 
 

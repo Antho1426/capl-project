@@ -1,8 +1,13 @@
 package ch.epfl.mobots.papl;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.Pair;
+
+import com.bluetooth.mwoolley.microbitbledemo.R;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
@@ -14,6 +19,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.IOException;
@@ -22,27 +28,48 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import static com.bluetooth.mwoolley.microbitbledemo.R.drawable.*;
 import static org.opencv.core.Core.extractChannel;
-
-
-
-
 
 
 public class ComputerVision extends Application {
 
 
+//    private static Context context;
+//
+//    public ComputerVision(Context context) {
+//        this.context = context;
+//    }
 
-    // Cf.: https://stackoverflow.com/questions/21818905/get-application-context-from-non-activity-singleton-class
-    private static ComputerVision mContext;
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mContext = this;
-    }
-    public static ComputerVision getContext() {
-        return mContext;
-    }
+//    // Cf.: https://stackoverflow.com/questions/21818905/get-application-context-from-non-activity-singleton-class
+//    private static ComputerVision mContext;
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        mContext = this;
+//    }
+//    public static ComputerVision getContext() {
+//        return mContext;
+//    }
+
+
+
+
+
+
+
+//    @SuppressLint("StaticFieldLeak")
+//    private static Context context;
+//    // Cf.: https://stackoverflow.com/questions/6214386/how-to-access-drawable-from-non-activity-class
+//    public ComputerVision(Context context) {
+//        ComputerVision.context = context;
+//    }
+//    //public final Drawable two = context.getResources().getDrawable(tile_template_two);
+
+
+
+
+
 
 
 //    // Cf.: https://stackoverflow.com/questions/6214386/how-to-access-drawable-from-non-activity-class
@@ -125,7 +152,7 @@ public class ComputerVision extends Application {
         // --> "THRESH_BINARY_INV"
         // Cf. 1): https://answers.opencv.org/question/2885/findcontours-gives-me-the-border-of-the-image/
         //     2): https://stackoverflow.com/questions/26137051/opencv-threshold-and-invert-an-image
-        Imgproc.threshold(blur, thresh, 0, 255, Imgproc.THRESH_BINARY_INV+Imgproc.THRESH_OTSU);
+        Imgproc.threshold(blur, thresh, 0, 255, Imgproc.THRESH_BINARY_INV+ Imgproc.THRESH_OTSU);
         //showResult(thresh, "あ.A.2.b) thresh", 0, 0);
 
         // 3) Median filter clears small details
@@ -300,7 +327,7 @@ public class ComputerVision extends Application {
         sortedSourcePoints[2] = new Point(corners.get(bot_right_index,0)[0],corners.get(bot_right_index,0)[1]);
         sortedSourcePoints[3] = new Point(corners.get(top_right_index,0)[0],corners.get(top_right_index,0)[1]);
 
-        Mat src_mat = new Mat(4,1,CvType.CV_32FC2);
+        Mat src_mat = new Mat(4,1, CvType.CV_32FC2);
         src_mat.put(0,0,sortedSourcePoints[0].x,sortedSourcePoints[0].y,sortedSourcePoints[1].x,sortedSourcePoints[1].y,sortedSourcePoints[2].x,sortedSourcePoints[2].y,sortedSourcePoints[3].x,sortedSourcePoints[3].y);
 
 
@@ -357,8 +384,7 @@ public class ComputerVision extends Application {
 
 
 
-
-    public static Pair<String[], Mat> TilesIdentification(Mat image) {
+    public static Pair<String[], Mat> TilesIdentification(Mat image, Mat two, Mat three, Mat four, Mat end_repeat, Mat go_backward, Mat go_forward, Mat start_repeat, Mat turn_back, Mat turn_left, Mat turn_right) {
 
 
 
@@ -426,7 +452,7 @@ public class ComputerVision extends Application {
         // --> "THRESH_BINARY_INV"
         // Cf. 1): https://answers.opencv.org/question/2885/findcontours-gives-me-the-border-of-the-image/
         //     2): https://stackoverflow.com/questions/26137051/opencv-threshold-and-invert-an-image
-        Imgproc.threshold(blur, thresh, 0, 255, Imgproc.THRESH_BINARY_INV+Imgproc.THRESH_OTSU);
+        Imgproc.threshold(blur, thresh, 0, 255, Imgproc.THRESH_BINARY_INV+ Imgproc.THRESH_OTSU);
         //showResult(thresh, "あ.A.2.b) thresh", 0, 0);
 
         // 3) Median filter clears small details
@@ -608,7 +634,7 @@ public class ComputerVision extends Application {
         sortedSourcePoints[2] = new Point(corners.get(bot_right_index,0)[0],corners.get(bot_right_index,0)[1]);
         sortedSourcePoints[3] = new Point(corners.get(top_right_index,0)[0],corners.get(top_right_index,0)[1]);
 
-        Mat src_mat = new Mat(4,1,CvType.CV_32FC2);
+        Mat src_mat = new Mat(4,1, CvType.CV_32FC2);
         src_mat.put(0,0,sortedSourcePoints[0].x,sortedSourcePoints[0].y,sortedSourcePoints[1].x,sortedSourcePoints[1].y,sortedSourcePoints[2].x,sortedSourcePoints[2].y,sortedSourcePoints[3].x,sortedSourcePoints[3].y);
 
 
@@ -626,7 +652,7 @@ public class ComputerVision extends Application {
         Log.d("tag", "width_rectified: " + width_rectified);
 
         // Calculating the target points
-        Mat dst_mat = new Mat(4,1,CvType.CV_32FC2);
+        Mat dst_mat = new Mat(4,1, CvType.CV_32FC2);
         dst_mat.put(0,0,0,0, 0,height_rectified, width_rectified,height_rectified, width_rectified,0);
 
         Mat perspectiveTransform = Imgproc.getPerspectiveTransform(src_mat, dst_mat);
@@ -786,7 +812,7 @@ public class ComputerVision extends Application {
 //        double minVal_probe_area_thresh = minMax_probe_area_thresh.minVal;
 //        boolean black = Core.mean(probe_area_thresh).val[0] < Math.round((maxVal_probe_area_thresh - minVal_probe_area_thresh)/2);
         //-----
-        boolean black = (Core.mean(probe_area).val[0]+Core.mean(probe_area).val[1]+Core.mean(probe_area).val[2])/3 < 100;
+        boolean black = (Core.mean(probe_area).val[0]+ Core.mean(probe_area).val[1]+ Core.mean(probe_area).val[2])/3 < 100;
         if (black) {
             Core.flip(rectified,rectified,-1); // Rotate clockwise 180 degrees, cf.: https://stackoverflow.com/questions/16265673/rotate-image-by-90-180-or-270-degrees
             //showResult(rectified, "う.B.3) flipped rectified", (int) width_rectified/3, (int) height_rectified/3);
@@ -862,75 +888,84 @@ public class ComputerVision extends Application {
 
 
 
-        Mat two = null;
-        try {
-            two = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_two);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat three = null;
-        try {
-            three = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_three);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat four = null;
-        try {
-            four = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_four);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat end_repeat = null;
-        try {
-            end_repeat = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_end_repeat);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat go_backward = null;
-        try {
-            go_backward = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_go_backward);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat go_forward = null;
-        try {
-            go_forward = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_go_forward);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat start_repeat = null;
-        try {
-            start_repeat = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_start_repeat);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat turn_back = null;
-        try {
-            turn_back = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_turn_back);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat turn_left = null;
-        try {
-            turn_left = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_turn_left);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //-----------------------------------------------------
-        Mat turn_right = null;
-        try {
-            turn_right = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_turn_right);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+//        Mat two = null;
+//        try {
+//            two = Utils.loadResource(context, tile_template_two, Highgui.CV_LOAD_IMAGE_COLOR);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+////        Mat two = null;
+////        try {
+////            two = Utils.loadResource(ComputerVision.getContext(), R.drawable.tile_template_two);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat three = null;
+////        try {
+////            three = Utils.loadResource(ComputerVision.getContext(), tile_template_three);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat four = null;
+////        try {
+////            four = Utils.loadResource(ComputerVision.getContext(), tile_template_four);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat end_repeat = null;
+////        try {
+////            end_repeat = Utils.loadResource(ComputerVision.getContext(), tile_template_end_repeat);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat go_backward = null;
+////        try {
+////            go_backward = Utils.loadResource(ComputerVision.getContext(), tile_template_go_backward);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat go_forward = null;
+////        try {
+////            go_forward = Utils.loadResource(ComputerVision.getContext(), tile_template_go_forward);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat start_repeat = null;
+////        try {
+////            start_repeat = Utils.loadResource(ComputerVision.getContext(), tile_template_start_repeat);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat turn_back = null;
+////        try {
+////            turn_back = Utils.loadResource(ComputerVision.getContext(), tile_template_turn_back);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat turn_left = null;
+////        try {
+////            turn_left = Utils.loadResource(ComputerVision.getContext(), tile_template_turn_left);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        //-----------------------------------------------------
+//        Mat turn_right = null;
+////        try {
+////            turn_right = Utils.loadResource(ComputerVision.getContext(), tile_template_turn_right);
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
 
 
 
@@ -1040,7 +1075,7 @@ public class ComputerVision extends Application {
             // 4) Threshold
             //**************************************************
             Mat region_of_interest_thresh = new Mat();
-            Imgproc.threshold(region_of_interest_blur, region_of_interest_thresh, 0, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
+            Imgproc.threshold(region_of_interest_blur, region_of_interest_thresh, 0, 255, Imgproc.THRESH_BINARY+ Imgproc.THRESH_OTSU);
             // 5) Blur 2 (to clear small details)
             //**************************************************
             Mat region_of_interest_blur_2 = new Mat();
@@ -1152,7 +1187,7 @@ public class ComputerVision extends Application {
 
 
         //return commands;
-        return new Pair<String[],Mat>(commands, cropped);
+        return new Pair<String[], Mat>(commands, cropped);
 
 
     }
