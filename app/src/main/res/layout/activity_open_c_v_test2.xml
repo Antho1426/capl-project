@@ -6,7 +6,7 @@
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ch.epfl.mobots.papl.ui.OpenCVTestActivity2">
+    tools:context="com.bluetooth.mwoolley.microbitbledemo.ui.OpenCVTestActivity2">
 
 
     <Button

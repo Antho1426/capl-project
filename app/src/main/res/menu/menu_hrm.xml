@@ -20,7 +20,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ch.epfl.mobots.papl.ui.AccelerometerActivity">
+    tools:context="com.bluetooth.mwoolley.microbitbledemo.ui.AccelerometerActivity">
     <item
         android:id="@+id/menu_hrm_settings"
         android:title="@string/menu_settings"

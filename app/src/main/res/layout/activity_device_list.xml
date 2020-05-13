@@ -7,7 +7,7 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:orientation="vertical"
-    tools:context="ch.epfl.mobots.papl.ui.DeviceListActivity" >
+    tools:context="com.bluetooth.mwoolley.microbitbledemo.ui.DeviceListActivity" >
 
     <TextView
         android:id="@+id/message"

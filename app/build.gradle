@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "ch.epfl.mobots.papl"
+        applicationId "com.bluetooth.mwoolley.microbitbledemo"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 7

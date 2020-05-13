@@ -71,50 +71,7 @@
         android:textSize="18dp"
         android:text="@string/service_dfu_control"/>
 
-    <TextView
-        android:id="@+id/service_accelerometer_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_accelerometer"/>
 
-    <TextView
-        android:id="@+id/service_magnetometer_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_magnetometer"/>
-
-    <TextView
-        android:id="@+id/service_button_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_button"/>
-
-    <TextView
-        android:id="@+id/service_io_pin_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_io_pin"/>
-
-    <TextView
-        android:id="@+id/service_led_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_led"/>
 
     <TextView
         android:id="@+id/service_event_presence"
@@ -125,23 +82,7 @@
         android:textSize="18dp"
         android:text="@string/service_event"/>
 
-    <TextView
-        android:id="@+id/service_temperature_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_temperature"/>
 
-    <TextView
-        android:id="@+id/service_uart_presence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal"
-        android:textSize="18dp"
-        android:text="@string/service_uart"/>
 
     <TextView
         android:layout_width="match_parent"
