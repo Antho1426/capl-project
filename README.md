@@ -22,7 +22,8 @@ More details regarding the functionalities of each of these activities are given
 The work presented here provides a base for future Android activities around the Cardbot and other micro:bit-based robots. Moreover, the Android activities can be easily adapted to various age groups by, for instance, changing the displacement costs of the robot in the "Geography Game", by including new rules or by implementing more advanced MCQs. 
 
 
-![alt text](https://github.com/Antho1426/capl-app/title_with_geography_activity.png?raw=true)
+![CaPL](title_with_geography_activity.png)
+
 
 
 
