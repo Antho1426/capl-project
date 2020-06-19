@@ -1,4 +1,4 @@
-# PaPL
+# CaPL
 
 ## Version: 1.0.0
 
@@ -10,28 +10,19 @@
 
 __Description:__ 
 
-This application 
+Research conducted in recent years showed that the use of tangible platforms for teaching the basics of programming to children can improve their engagement, interest and collaboration. An important drawback of these robotics educational platforms, however, is that they might be expensive and a lot of schools are not able to afford them. In 2019, EPFL developed two accessible tangible programming language systems: Thymio TPL and Thymio PaPL.
 
-__Instructions:__<br>
+As part of my first semester project in Spring 2020, I took part in the development of a new low-cost and accessible tangible programming language based on cardboard. This project was hence called Cardboard-based Programming Language (CaPL). Based on the micro:bit Blue Android app made by Martin Woolley (a senior British developer and Bluetooth expert), this application is the cornerstone of the CaPL project. Its main purpose is to enable communication between the cardboard-based robot, called Cardbot, and the CaPL tangible programming tiles. In addition, the CaPL app provides also different kinds of feedback regarding the execution of the code by the Cardbot. It is composed of several activities among which the most interesting are:
 
-Install the latest apk file from the releases folder. Note that the application requires at least version 2.0.0 of the micro:bit run time and the smartphone or tablet should be paired with the micro:bit before the application can be used.  
+- The "Free Game"
+- The "Geography Game"
+- The "Easter Egg"
 
-__Requirements:__<br>
+More details regarding the functionalities of each of these activities are given in their respective "info" menu.
+The work presented here provides a base for future Android activities around the Cardbot and other micro:bit-based robots. Moreover, the Android activities can be easily adapted to various age groups by, for instance, changing the displacement costs of the robot in the "Geography Game", by including new rules or by implementing more advanced MCQs. 
 
-The application should work on Android version 4.4 or later. Version 5 or later is recommended however. Limited testing has been carried out across Android versions.
 
-__Known Issues:__
-
-1. 
-2. 
-3. 
-4. 
-5. 
-
-__Version History:__
-
-__1.0.0__
-- It's now possible to 
+![alt text](https://github.com/Antho1426/capl-app/title_with_geography_activity.png?raw=true)
 
 
 
