@@ -22,60 +22,28 @@
     <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
 </head>
 <img>
-<h1>Squirrel Counter - micro:bit Event Service demo</h1>
-<h2>The Demo</h2>
-<p>The BBC micro:bit contains a message bus which acts as a conduit for events of all sorts. A micro:bit developer can create events and connected applications
-    like this one can use the Bluetooth Event Service to register an interest in particular events and receive notifications from the micro:bit when events of interest are generated on the bus.</p>
-<p>This demo must be run with custom firmware on the micro:bit therefore.</p>
-<p>What?<p>
+<h1>Geography Activity</h1>
+<h2>Principle</h2>
 <p>
-	With the right code flashed to your micro:bit (see below) you can count the squirrels you see when out and about my pressing button A on the micro:bit. At this point you do not need this application. Later on though, run this application
-	on your phone, launch this demo and then press button B on the micro:bit and the number of squirrels you saw will be magically transmitted to yuor phone and displayed. Transmitted as a micro:bit event characteristic from the Bluetooth
-	Event Service that is.
-</p>
-<h2>The Code</h2>
-<p>
+    bla bla bla
 </p>
 <p>
-    Your micro:bit needs the following code in main.cpp for this demo to work and the Event Service must be enabled.
+    bla bla bla
 </p>
 <p>
-<pre>
-#include "MicroBit.h"
-
-/*
- * Counter
- * Uses the Bluetooth Event Service to inform registered clients of the number of times button A has been pressed since the last time the accrued value was uploaded
- * over Bluetooth to a connected client application.
- */
-
-uint16_t counter       = 0;
-uint16_t counter_event = 9003;
-
-void onButtonAClick(MicroBitEvent e)
-{
-	counter++;
-    uBit.display.scrollAsync(counter);
-}
-
-void onButtonBClick(MicroBitEvent e)
-{
-    MicroBitEvent evt(counter_event, counter);
-	counter = 0;
-}
-
-void app_main()
-{
-  uBit.display.scrollAsync("COUNTER");
-  uBit.MessageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonAClick);
-  uBit.MessageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonBClick);
-
-}
-
-</pre>
+	bla bla bla
+</p>
+<h2>Outstanding features</h2>
+<p>
 </p>
 <p>
-    All the code for this demo can be found in ui.TemperatureAlarmActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+    bla bla bla
+</p>
+<p>
+
+</p>
+<p>
+    bla bla bla
 </p>
 
 </body>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_go_forward"
+        android:icon="@drawable/tile_template_go_forward_small"
+        android:title="Go Forward"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_go_backward"
+        android:icon="@drawable/tile_template_go_backward_small"
+        android:title="Go Backward"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_turn_right"
+        android:icon="@drawable/tile_template_turn_right_small"
+        android:title="Turn Right"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_turn_left"
+        android:icon="@drawable/tile_template_turn_left_small"
+        android:title="Turn Left"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_turn_back"
+        android:icon="@drawable/tile_template_turn_back_small"
+        android:title="Turn Back"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_start_repeat"
+        android:icon="@drawable/tile_template_start_repeat_small"
+        android:title="Start Repeat"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_end_repeat"
+        android:icon="@drawable/tile_template_end_repeat_small"
+        android:title="End Repeat"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_two"
+        android:icon="@drawable/tile_template_two_small"
+        android:title="Two"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_three"
+        android:icon="@drawable/tile_template_three_small"
+        android:title="Three"
+        >@style/ActionButtonStyle</item>
+
+    <item
+        android:id="@+id/action_four"
+        android:icon="@drawable/tile_template_four_small"
+        android:title="Four"
+        >@style/ActionButtonStyle</item>
+
+
+</menu>

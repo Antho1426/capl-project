@@ -18,7 +18,7 @@
  */
 -->
 <resources>
-    <string name="app_name">PaPL</string>
+    <string name="app_name">CaPL</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_help">Help</string>
     <string name="menu_about">About</string>
@@ -29,6 +29,8 @@
 
     <string name="screen_title_main">Device List</string>
     <string name="screen_title_menu">Activities</string>
+    <string name="screen_title_free_game">Free Game</string>
+    <string name="screen_title_geography_game">Geography Game</string>
     <string name="screen_title_accelerometer">Accelerometer</string>
     <string name="screen_title_magnetometer">Magnetometer</string>
     <string name="screen_title_buttons">Buttons</string>
@@ -103,5 +105,38 @@
     <string name="gamepad_left_off">Left OFF</string>
     <string name="gamepad_right_on">Right ON</string>
     <string name="gamepad_right_off">Right OFF</string>
+
+
+<!--    For the DropDownListActivity:-->
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="country_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+<!-- ............................... -->
+
+
+
+<!--    For the drop down list to select example pictures in the "FreeGameActivity"-->
+
+<!--    <string name="sequence_example_prompt">Choose a picture example</string>-->
+
+<!--    <string-array name="sequence_picture_examples_arrays">-->
+<!--        <item>Example 1: short sequence</item>-->
+<!--        <item>Example 2: long sequence</item>-->
+<!--        <item>Example 3: sequence with 1 ’for loop’</item>-->
+<!--        <item>Example 4: sequence with 2 separated ’for loops’</item>-->
+<!--        <item>Example 5: sequence with 1 ’for loop’ nested in another</item>-->
+<!--    </string-array>-->
+
+<!-- ............................... -->
+
 
 </resources>

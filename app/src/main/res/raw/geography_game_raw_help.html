@@ -1,0 +1,220 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+
+
+
+    <STYLE type="text/css">
+    ul, ol, p { text-align: justify}
+</STYLE>
+
+
+    <h1>Geography Activity</h1>
+
+
+
+    <h2>Principle</h2>
+
+
+    <p>
+        The "Geography Game" is a game built on top of the "Free Game" where the users have to compose an efficient path for the Cardbot that travels on a world map between a starting position and a destination. The robot has a limited amount of energy and each movements costs energy  (water costs twice as much as terrain). If the path is not executed in one go, a MCQ screen might pop up and ask a question regarding the specific location at which the robot is on the map. Each positive response drives the battery level up while each incorrect response drives it down. If the destination is reached the battery level of the robot increases and the user can choose to reinitialize the location of the starting point and the destination.</p>
+
+
+    <div style='text-align:center'>
+        <img src="file:///android_asset/help/geography_game_in_action.png" alt="Geography game" width="500">
+        <div style='text-align:left'>
+
+
+
+            <p>
+            </p>
+
+
+
+
+<!--            <div style='text-align:center'>-->
+<!--                <video src="file:///android_asset/help/geography_game_1_player.m4v" poster="file:///android_asset/help/geography_game_1_player_poster.png" onclick="this.play();"></video>-->
+<!--                &lt;!&ndash;                <video width="500" controls>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <source src="geography_game_1_player.mp4" type="video/mp4">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    Your browser does not support the video tag.&ndash;&gt;-->
+<!--                &lt;!&ndash;                </video>&ndash;&gt;-->
+<!--                <div style='text-align:left'>-->
+
+
+            <div style='text-align:center'>
+                <video width="500" poster="file:///android_asset/help/geography_game_1_player_poster.png" controls>
+                    <!--     <source src="easter_egg.mp4" type="video/mp4"> -->
+                    <source src="file:///android_asset/help/geography_game_1_player.m4v">
+                    <!--     <source src="easter_egg.webm" type="video/webm"> -->
+                    Your browser does not support the video tag.
+                </video>
+                <div style='text-align:left'>
+
+
+
+
+
+
+                    <p>
+                        Moreover, the "Geography Game" is programmed in such a way that several users can participate in the game. This is done using a "token system". At the beginning of the game, each player receives a tangible black token. The token will serve as an identification badge at the moment a question has to be answered. Each member will have to approve the response. If a token is missing while the picture is taken, the question is assumed to be responded by only some members of the group and a penalty is applied (by decreasing the battery level). If however the number of tokens corresponds to the number of players in the group, the question can be normally evaluated (either it is correct and the battery level increases or it is evaluated as incorrect and the battery level decreases). This idea of the tokens can be seen as a way of countering the fact that children usually don't naturally collaborate. With the token system, collaboration can hence be forced because they will have to discuss about their choice and verbalize their idea.
+                    </p>
+
+
+                    <div style='text-align:center'>
+                        <img src="file:///android_asset/help/tokens.png" alt="Tokens" width="500">
+                        <div style='text-align:left'>
+
+
+
+
+                            <p>
+                            </p>
+
+
+
+
+                            <div style='text-align:center'>
+                                <img src="file:///android_asset/help/title_with_geography_activity.png" alt="Geography game with printed world map" width="500">
+                                <div style='text-align:left'>
+
+
+
+
+
+                                    <p>
+                                    </p>
+
+
+
+
+<!--                                    <div style='text-align:center'>-->
+<!--                                        <video src="file:///android_asset/help/geography_game_2_players.m4v" poster="file:///android_asset/help/geography_game_2_players_poster.png" onclick="this.play();"></video>-->
+<!--                                        &lt;!&ndash;                                        <video width="500" controls>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <source src="geography_game_2_players.mp4" type="video/mp4">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            Your browser does not support the video tag.&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </video>&ndash;&gt;-->
+<!--                                        <div style='text-align:left'>-->
+
+
+
+                                            <div style='text-align:center'>
+                                                <video width="500" poster="file:///android_asset/help/geography_game_2_players_poster.png" controls>
+                                                    <!--     <source src="easter_egg.mp4" type="video/mp4"> -->
+                                                    <source src="file:///android_asset/help/geography_game_2_players.m4v">
+                                                    <!--     <source src="easter_egg.webm" type="video/webm"> -->
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                                <div style='text-align:left'>
+
+
+
+
+                                            <p>
+                                                This game combining programming, robotics and geography works as much digitally as with a real Cardbot.
+                                            </p>
+
+
+
+
+
+
+
+
+                                            <h2>Features</h2>
+
+
+
+                                            <p>
+                                                The steps to follow to program the Cardbot using the "Geography Game" are numbered and are roughly the same as in the "Free Game". This process is illustrated with following figure:
+                                            </p>
+
+
+
+
+
+                                            <p>
+                                            </p>
+
+
+                                            <div style='text-align:center'>
+                                                <img src="file:///android_asset/help/geography_game.png" alt="Geography game activity" width="500">
+                                                <div style='text-align:left'>
+
+
+                                                    <ol>
+                                                        <li>
+                                                            First of all, the number of players has to be entered with the keyboard by clicking on the box with the '1'.
+                                                        </li>
+
+                                                        <li>
+                                                            Then Just like with the "Free Game", the users can either load their program by taking a picture of their tangible sequence of tiles using the "Camera" button or by loading a picture from the gallery of the Android device with the "Gallery" button.
+
+                                                            In addition, the users can also program the Cardbot digitally by clicking on the floating action button "Digital tiles" presenting the shape of a "middle tile support". This deploys the series of tiles in digital format from which the users can choose any element they want. This feature also allows the users to edit the sequence of tiles generated by the photos.
+                                                        </li>
+
+                                                        <li>
+                                                            After that, the users click on "Identify tiles". In the case the sequence of programming tiles come from a photo, this step runs the computer vision algorithm allowing to recognize each of the symbols in the sequence.
+
+                                                        </li>
+
+                                                        <li>
+                                                            Finally, the fourth and last step to the process is to send the commands to the robot. This is done by clicking on the button "Send commands". Using this button, each command is automatically sent one by one to the Cardbot until the end of the sequence.
+                                                        </li>
+
+                                                        <li>
+                                                            The button "Reinitialize" is optional. it allows to randomly reset the location of the Cardbot and the destination.
+                                                        </li>
+
+                                                    </ol>
+
+
+
+                                                    <p>
+                                                        The "Geography Game" provides a few kind of feedback regarding the execution of the commands by the robot:
+                                                    <ul>
+                                                        <li>If there is a mistake in the sequence, a toast error message is displayed.</li>
+                                                        <li>The current executed command is highlighted with a red square in the sequence and copied underneath.</li>
+                                                        <li>Information regarding the 'for loops' iterations are displayed. It prints the number of 'for loops' in the sequence, it indicates in which 'for loop' of the program the robot is currently situated and for each 'for loop' (nested or not) it indicates the iteration in which the robot is currently situated.</li>
+                                                        <li>The LED matrix on top of both the virtual and real Cardbot adapts to the current command.</li>
+                                                        <li>The Cardbot pose (coordinates and orientation) is displayed in real time on top of the world map.</li>
+                                                        <li>The battery level of the Cardbot on the top right-hand corner is continuously adjusted according to the answers to the MCQs and the displacements of the Cardbot.</li>
+                                                        <li>The "Travel counter" on top of the map records how many times a destination has been reached in the same game.</li>
+                                                    </ul>
+                                                    </p>
+
+
+
+                                                    <p>
+                                                        Happy programming and travelling with the CaPL "Geography Game"!
+                                                    </p>
+
+
+
+
+
+
+
+
+
+                                                        </body>
+</html>

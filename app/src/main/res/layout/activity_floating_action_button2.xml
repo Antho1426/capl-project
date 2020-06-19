@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.epfl.mobots.capl.ui.FloatingActionButtonActivity2">
+
+    <Space
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMain_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:tint="@android:color/white"
+            android:layout_margin="4dp"
+            app:srcCompat="@drawable/tile_template_middle_tile_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@android:color/white"
+            app:fabSize="mini"
+            android:id="@+id/fabOne_o"
+            android:layout_margin="4dp"
+            app:srcCompat="@drawable/tile_template_two_icon"
+            />
+<!--        app:srcCompat="@android:drawable/ic_dialog_email"-->
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@android:color/white"
+            app:fabSize="mini"
+            android:id="@+id/fabTwo_o"
+            android:layout_margin="4dp"
+            app:srcCompat="@drawable/tile_template_three_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@android:color/white"
+            app:fabSize="mini"
+            android:id="@+id/fabThree_o"
+            android:layout_margin="4dp"
+            app:srcCompat="@drawable/tile_template_four_icon"
+            />
+<!--        app:srcCompat="@android:drawable/ic_delete"-->
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -20,11 +20,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.bluetooth.mwoolley.microbitbledemo.ui.AccelerometerActivity">
+    tools:context="com.bluetooth.mwoolley.microbitbledemo.ch.bluetooth.mwoolley.microbitbledemo.ui.AccelerometerActivity">
+
+    <!--
     <item
         android:id="@+id/menu_hrm_settings"
         android:title="@string/menu_settings"
         android:orderInCategory="110" />
+    -->
+
     <item
         android:id="@+id/menu_hrm_help"
         android:title="@string/menu_help"

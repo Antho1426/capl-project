@@ -59,11 +59,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:padding="4dp"
-
                     grid:alignmentMode="alignBounds"
                     grid:columnCount="2"
                     grid:rowOrderPreserved="false"
                     grid:useDefaultMargins="true">
+
 
                     <ImageView
                         android:id="@+id/button1"

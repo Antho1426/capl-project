@@ -17,16 +17,31 @@
  *  limitations under the License.
  */
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.bluetooth.mwoolley.microbitbledemo.ui.GamepadControllerActivity">
+<!--<menu xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    tools:context="com.bluetooth.mwoolley.microbitbledemo.ch.bluetooth.mwoolley.microbitbledemo.ui.GamepadControllerActivity">-->
+
+<!--    &lt;!&ndash;-->
+<!--    <item-->
+<!--        android:id="@+id/menu_gamepad_settings"-->
+<!--        android:title="@string/menu_settings"-->
+<!--        android:orderInCategory="110" />-->
+<!--    &ndash;&gt;-->
+
+<!--    <item-->
+<!--        android:id="@+id/menu_controller_help"-->
+<!--        android:title="@string/menu_help"-->
+<!--        android:orderInCategory="110" />-->
+<!--</menu>-->
+
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/menu_gamepad_settings"
-        android:title="@string/menu_settings"
-        android:orderInCategory="110" />
-    <item
-        android:id="@+id/menu_controller_help"
-        android:title="@string/menu_help"
-        android:orderInCategory="110" />
+        android:id="@+id/controller_action_info"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Info"
+        app:showAsAction="always" />
 </menu>

@@ -44,4 +44,14 @@
 
     <color name="pad_background">#1D1D1D</color>
 
+
+    <!--    Translucent colors-->
+    <!--    Translucent_grey:-->
+    <!--    Cf.: https://stackoverflow.com/questions/17459289/set-shape-background-to-transparent-in-android-->
+    <color name="translucent_grey">#88cccccc</color>
+    <!--    Translucent green-->
+    <!--    Android color code-->
+    <!--    https://encycolorpedia.com/a4c639-->
+    <color name="translucent_green">#8800ff00</color>
+
 </resources>

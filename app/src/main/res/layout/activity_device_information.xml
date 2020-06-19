@@ -21,6 +21,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:paddingBottom="10dip"
+    android:background="@drawable/wood_background_light"
     android:paddingLeft="10dip"
     android:paddingTop="10dip">
 
