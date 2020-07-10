@@ -21,7 +21,7 @@ As part of my first semester project in Spring 2020, I took part in the developm
 More details regarding the functionalities of each of these activities are given in the respective "info" menu of the capl-app.
 The work presented here provides a base for future Android activities around the Cardbot and other micro:bit-based robots. Moreover, the Android activities can be easily adapted to various age groups by, for instance, changing the displacement costs of the robot in the "Geography Game", by including new rules or by implementing more advanced MCQs. 
 
-The capl-framework-app provides a framework for adapting the CaPL project to different types of robots not specifically based on micro:bit. By following the documentation in "Guinchard_A_CaPL-framework-documentation.pdf" file, developers can easily understand which parts of the code need to be adapted to interface other robots (e.g. Thymio) via Bluetooth.
+The capl-framework-app provides a framework for adapting the CaPL project to different types of robots not specifically based on micro:bit. By following the documentation in "CaPL_framework_documentation_2020_Guinchard_A.pdf" file, developers can easily understand which parts of the code need to be adapted to interface other robots (e.g. Thymio) via Bluetooth.
 
 The key elements of the project are presented in this video: https://www.youtube.com/watch?v=SX8Q3Wv9Q3Q&t=59s
 
