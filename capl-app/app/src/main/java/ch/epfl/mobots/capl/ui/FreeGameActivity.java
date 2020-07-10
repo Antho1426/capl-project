@@ -350,24 +350,14 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         o.inDither = false;
         o.inSampleSize = 4;
 
-        // Bitmap to Mat
-        //Mat image = new Mat();
-        //Utils.bitmapToMat(imageBitmap, image);
 
-        //int width = imageBitmap.getWidth();
+
         int width = selectedImage.getWidth();
-        //int height = imageBitmap.getHeight();
 
-        // Computer vision part on the newly created Mat object
-        //Mat grayMat = new Mat();
-        //Imgproc.cvtColor(image, grayMat, Imgproc.COLOR_RGB2GRAY);
-        //Utils.matToBitmap(grayMat, grayBitmap);
 
 
 
         //-----
-        //String[] commands = ComputerVision.TilesIdentification(image);
-
         // Start the stopwatch / counter for measuring execution time of computer vision
         start = System.nanoTime();
 
@@ -379,21 +369,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         commands = result.first;
         Mat cropped = result.second;
         //-----------------
-//        try {
-//            Pair<String[], Mat> result = ComputerVision.TilesIdentification(image, two, three, four, end_repeat, go_backward, go_forward, start_repeat, turn_back, turn_left, turn_right); // "How to return multiple objects from a Java method?" --> cf.: https://stackoverflow.com/questions/457629/how-to-return-multiple-objects-from-a-java-method
-//            // Stop the stopwatch / counter
-//            finish = System.nanoTime();
-//            // Retrieving the outputs of ComputerVision algo
-//            commands = result.first;
-//            Mat cropped = result.second;
-//        } catch (Exception e) {
-//            Toast.makeText(getApplicationContext(), "Tiles identification failed. Error message: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            // Making consequently the sendCommandsBtn NOT clickable
-//            sendCommandsBtn.setEnabled(false);
-//        }
-        //-----------------
-
-
 
         if (DebugModeOn) {
             textViewIdentifiedCommands.setText(Arrays.toString(commands));
@@ -401,20 +376,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
             textViewIdentifiedCommands.setText("");
         }
         //-----
-
-
-
-        // In the final app the AsyncTask doesn't consider following part to put the rectified image
-        // in the ImageView anyway
-        //------------------------------
-//        croppedBitmap = Bitmap.createBitmap(cropped.cols(), cropped.rows(), Bitmap.Config.RGB_565);
-//        //croppedBitmap = Bitmap.createBitmap(width, (int) (cropped.rows()*(double)width/cropped.cols()), Bitmap.Config.RGB_565);
-//        Utils.matToBitmap(cropped, croppedBitmap);
-//        int height = (int) (cropped.rows()*(double)width/cropped.cols());
-//        croppedBitmap_resized = Bitmap.createScaledBitmap(croppedBitmap, width, height, true);
-//        // Setting "cropped sequence of commands" in the ImageView selectedImage
-//        selectedImage.setImageBitmap(croppedBitmap_resized);
-        //------------------------------
 
 
 
@@ -778,13 +739,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
                     iteration_in_loop_final = iteration_in_loop;
 
-                    // Getting the "interpreted_commands" info:
-                    //interpreted_commands[i]
-                    // Getting the "iteration_in_loop" info:
-                    //for (int i=0; i<number_of_for_loops; i++) {
-                    //    System.out.println("   • Iterations in 'for loop' "+i+ ":\n    " + iteration_in_loop.get(i));
-                    //}
-
 
                 }
 
@@ -944,11 +898,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
 
                 //------------------------------------------------------------------------------
-
-                //currentExecutedCommandImageView = (ImageView) findViewById(R.id.current_executed_command_image_view);
-                //textViewCurrentExecutedCommand = (TextView) findViewById(R.id.current_executed_command_text_view);
-                //textViewCurrentIterationInForLoops = (TextView) findViewById(R.id.current_iteration_in_for_loops_text_view);
-                //textViewNumberOfForLoops = (TextView) findViewById(R.id.number_of_for_loops_text_view);
 
                 MicroBitEvent mb_event;
                 short event_value = 0;
@@ -1132,15 +1081,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 // The line below is the very line that makes the Bit:Buggy Car move!!!
                 bluetooth_le_adapter.writeCharacteristic(Utility.normaliseUUID(BleAdapterService.EVENTSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.CLIENTEVENT_CHARACTERISTIC_UUID), event_bytes);
 
-                //computer_vision_completed = false; // in order for the user to not be able to resend twice the same series of commands one after the other. If he wants to resend a command, he would have to re-perform a "computer vision" step
-
-
-                // We let the system sleep for 1 second for the time of the execution of the current command
-                //TimeUnit.SECONDS.sleep(1);
-
-
-
-
 
 
                 //------------------------------------------------------------------------------
@@ -1190,31 +1130,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
 
 
-    // Decodes image and scales it to reduce memory consumption
-//    private Bitmap decodeFile(File f) {
-//        try {
-//            // Decode image size
-//            BitmapFactory.Options o = new BitmapFactory.Options();
-//            o.inJustDecodeBounds = true;
-//            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
-//
-//            // The new size we want to scale to
-//            final int REQUIRED_SIZE=70;
-//
-//            // Find the correct scale value. It should be the power of 2.
-//            int scale = 1;
-//            while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
-//                    o.outHeight / scale / 2 >= REQUIRED_SIZE) {
-//                scale *= 2;
-//            }
-//
-//            // Decode with inSampleSize
-//            BitmapFactory.Options o2 = new BitmapFactory.Options();
-//            o2.inSampleSize = scale;
-//            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-//        } catch (FileNotFoundException e) {}
-//        return null;
-//    }
 
 
 
@@ -1333,97 +1248,10 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
     private File createImageFile() throws IOException {
         Log.d("tag", "Entering createImageFile");
 
-        //-------------------------------------------------
-//        // Create an image file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_"; // creating the image file
-//        // setting the storage directory
-//        // cf.: https://androidpedia.net/en/tutorial/150/storing-files-in-internal-external-storage
-//        //------------------
-//        // ✓ The line below works (worked initially) for the tablet "NVIDIA SHIELD Tablet K1" (for both taking the picture and saving it to the folder "Pictures")
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        //------------------
-//        File storageDir = getApplicationContext().getFilesDir();
-//        //File storageDir = Environment.getExternalStorageDirectory();
-//        //File storageDir = Environment.getDataDirectory();
-//        //File storageDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
-//        //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES); // <-- this directory works (when we have no SD card inserted in the tablet) (but this doesn't allow to save the picture taken in the memory of the tablet...)
-//
-//        // checking that our directory exists:
-//        //storageDir.isDirectory();
-//
-//        // checking if we can create the .jpg file in which we are going to put our picture
-//        //File.createTempFile(imageFileName,".jpg",storageDir)
-//
-//        // checking the valid locations for directory:
-//        //getApplicationContext().getFilesDir()
-//
-//        File image = File.createTempFile(
-//                imageFileName,  /* prefix */
-//                ".jpg",   /* suffix */
-//                storageDir      /* directory */
-//        );
-//
-//        // Save a file: path for use with ACTION_VIEW intents
-//        currentPhotoPath = image.getAbsolutePath(); // getting the absolute path of the image where it is saved
-        //-------------------------------------------------
 
 
-
-        // A 1st alternative
-        //-------------------------------------------------
-        // Cf.: https://thetopsites.net/article/50621645.shtml
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        File image = null;
-//        try {
-//            image = File.createTempFile(timeStamp, ".jpg", storageDir);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        currentPhotoPath = String.valueOf(Uri.fromFile(image));
-        //-------------------------------------------------
-
-
-        // A 2nd alternative
-        // Cf.: https://stackoverflow.com/questions/17150597/file-createtempfile-vs-new-file
-        //-------------------------------------------------
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_"+".jpg"; // creating the image file
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        File storageDir = Environment.getExternalStorageDirectory();
-//        //File image = new File(this.getCacheDir(), imageFileName);
-//        File image = new File(storageDir, imageFileName);
-//        currentPhotoPath = image.getAbsolutePath(); // getting the absolute path of the image where it is saved
-        //-------------------------------------------------
-
-
-
-
-
-
-        // A 3rd alternative
-        //-------------------------------------------------
-        // Cf.: https://stackoverflow.com/questions/42628247/android-save-picture-in-internal-storage-what-am-i-doing-wrongfile-not-found
-        // External sdcard location
-        // directory name to store captured images and videos
-        //final String IMAGE_DIRECTORY_NAME = "PaPL";
-        //final int MEDIA_TYPE_IMAGE = 1;
-        //File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
-//        File mediaStorageDir = new File(getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
-//        // Cf.: https://stackoverflow.com/questions/24781213/how-to-create-a-folder-in-android-external-storage-directory
-//        if (!mediaStorageDir.exists()) {
-//            mediaStorageDir.mkdirs();
-//        }
-        //File mediaStorageDir = getExternalCacheDir();
-        //File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        //File mediaStorageDir = getFilesDir();
-//        File f= new File(mediaStorageDir, "PaPL");
-//        if (!f.exists()) {
-//            f.mkdir();;
-//        }
+
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         imageFile = new File(mediaStorageDir.getPath() + File.separator
@@ -1493,10 +1321,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
                 }
-                // Requesting rather this permission at any rate
-//                ActivityCompat.requestPermissions(FreeGameActivity.this,
-//                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
                 //--------------
 
 
@@ -1677,11 +1501,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
 
                 //------------------------------------------------------------------------------
-
-                //currentExecutedCommandImageView = (ImageView) findViewById(R.id.current_executed_command_image_view);
-                //textViewCurrentExecutedCommand = (TextView) findViewById(R.id.current_executed_command_text_view);
-                //textViewCurrentIterationInForLoops = (TextView) findViewById(R.id.current_iteration_in_for_loops_text_view);
-                //textViewNumberOfForLoops = (TextView) findViewById(R.id.number_of_for_loops_text_view);
 
                 MicroBitEvent mb_event;
                 short event_value = 0;
@@ -1865,17 +1684,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 // The line below is the very line that makes the Bit:Buggy Car move!!!
                 bluetooth_le_adapter.writeCharacteristic(Utility.normaliseUUID(BleAdapterService.EVENTSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.CLIENTEVENT_CHARACTERISTIC_UUID), event_bytes);
 
-                //computer_vision_completed = false; // in order for the user to not be able to resend twice the same series of commands one after the other. If he wants to resend a command, he would have to re-perform a "computer vision" step
-
-
-                // We let the system sleep for 1 second for the time of the execution of the current command
-                //TimeUnit.SECONDS.sleep(1);
-
-
-
-
-
-
                 //------------------------------------------------------------------------------
 
 
@@ -1936,10 +1744,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         protected void onPostExecute(String result) {
             // execution of result of Long time consuming operation
             progressDialog.dismiss();
-
-            // Re-changing the color of the text of the button computerVisionBtn
-            //computerVisionBtn.setTextColor(Color.BLACK);
-
 
 
             // If we got NO error at all (i.e. " resp.substring(0, 5) == "Slept" ") and we were able to obtain our "commands" String[], we can go to the rest of the process
@@ -2214,10 +2018,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
             gamepadFrame.setVisibility(View.INVISIBLE);
         }
 
-        // Info for wheel spinner: https://www.tutorialspoint.com/android/android_loading_spinner.htm
-        //spinner = (ProgressBar) findViewById(R.id.progressBar);
-        //spinner.setVisibility(View.INVISIBLE);
-
 
         OpenCVLoader.initDebug();
 
@@ -2427,19 +2227,10 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 if (selectedImage.getDrawable() != null) {
                     //Toast.makeText(FreeGameActivity.this, "Entering computer vision phase...", Toast.LENGTH_SHORT).show();
 
-                    // Changing the color of the text of the button
-                    //computerVisionBtn.setTextColor(Color.GREEN);
-
-                    //spinner.setVisibility(View.VISIBLE);
-
 
                     AsyncTaskRunnerWait runnerWait = new AsyncTaskRunnerWait();
                     String sleepTime = "0.1"; // 0.1[s]
                     runnerWait.execute(sleepTime);
-
-                    //executeTilesIdentification();
-
-                    //spinner.setVisibility(View.INVISIBLE);
 
 
                 } else {
@@ -2561,11 +2352,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
         int id = item.getItemId();
 
-//        if (id == R.id.menu_gamepad_settings) {
-//            Intent intent = new Intent(FreeGameActivity.this, GamepadControllerSettingsActivity.class);
-//            startActivity(intent);
-//            return true;
-//        }
         if (id == R.id.free_game_action_info) {
             Intent intent = new Intent(FreeGameActivity.this, HelpActivity.class);
             intent.putExtra(Constants.URI, Constants.FREE_GAME_HELP);
@@ -2582,27 +2368,8 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
 
 
-
-
-        //------------------------------------------------------------------------------------------
-        //        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data!=null) {
-//            imageUri = data.getData();
-//            try{
-//                // Convert Uri to Bitmap
-//                imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//            } catch(IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            selectedImage.setImageBitmap(imageBitmap);
-//        }
-
-
-
         if (requestCode == CAMERA_REQUEST_CODE) {
-            // Capture the image and set it as background for the ImageView
-//            Bitmap imageBit = (Bitmap) data.getExtras().get("data");
-//            selectedImage.setImageBitmap(image);
+
             if (resultCode == Activity.RESULT_OK) {
 
 
@@ -2630,55 +2397,12 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 {
                     e.printStackTrace();
                 }
-                //Bitmap imageBitmap = decodeFile(f,400,400);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
-// My Observations:
-//-----------------
-//                GeographyActivity, image from Gallery, input to C.V. (with WIDTH: 400, HIGHT: 400):
-//                Mat 486*648 CV_8UC4
-//                        (486/648 = 0.75)
-//                Hence C.V. is very very limited! Very bad resolution!
-//
-//                        FreeGameActivity, image from Gallery, input to C.V.:
-//                1944*2592*CV_8UC4
-//                Hence C.V. works perfectly
-//                (1944/2592 = 0.75)
-                // /!\ Since FreeGameActivity requires less memory, we can allow it to store a full resolution picture of 1944 x 2592 (1944*2592*CV_8UC4)
-                imageBitmap = decodeFile(f,2592,1944);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
+                imageBitmap = decodeFile(f,2592,1944);
 
                 selectedImage.setImageBitmap(imageBitmap);
-
                 //-----------
 
 
-
-
-                //********************************
-
-//                // /!\ "currentPhotoPath" seems to have been saved in the case of the tablet but NOT
-//                // for my phone!!
-//                File f = new File(currentPhotoPath); //File f = new File(imageFile.getAbsolutePath());
-//                selectedImage.setImageURI(Uri.fromFile(f));
-//                Log.d("tag", "Absolute Url of Image is: " + Uri.fromFile(f));
-//
-//                //Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-//                Uri contentUri = Uri.fromFile(f);
-//                //Uri contentUri = data.getData();
-//
-//
-//                //**************
-//                try{
-//                    // Convert Uri to Bitmap
-//                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentUri);
-//                } catch(IOException e) {
-//                    e.printStackTrace();
-//                }
-//                selectedImage.setImageBitmap(imageBitmap);
-//                //**************
-//
-//                //mediaScanIntent.setData(contentUri);
-//                //this.sendBroadcast(mediaScanIntent);
-
-                //********************************
 
                 // Pre-processing (for image coming from camera)
                 //--------------------------------------
@@ -2690,34 +2414,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 Utils.bitmapToMat(imageBitmap, image);
 
                 imageBitmap = null;
-
-                //--------------------------------------
-//                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                if (ok_for_tiles_identification) {
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
-                // Alternative to handle the eventual error in the pre-processing part for the tiles identification
-                //--------------------------------------
-//                try {
-//                    boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } catch (Exception e) {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!). ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
 
                 computerVisionBtn.setEnabled(true);
                 textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
@@ -2766,43 +2462,13 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
                 {
                     e.printStackTrace();
                 }
-                //Bitmap imageBitmap = decodeFile(f,400,400);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
-// My Observations:
-//-----------------
-//                GeographyActivity, image from Gallery, input to C.V. (with WIDTH: 400, HIGHT: 400):
-//                Mat 486*648 CV_8UC4
-//                        (486/648 = 0.75)
-//                Hence C.V. is very very limited! Very bad resolution!
-//
-//                        FreeGameActivity, image from Gallery, input to C.V.:
-//                1944*2592*CV_8UC4
-//                Hence C.V. works perfectly
-//                (1944/2592 = 0.75)
-                // /!\ Since FreeGameActivity requires less memory, we can allow it to store a full resolution picture of 1944 x 2592 (1944*2592*CV_8UC4)
-                imageBitmap = decodeFile(f,2592,1944);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
+
+                imageBitmap = decodeFile(f,2592,1944);
 
 
                 selectedImage.setImageBitmap(imageBitmap);
 
                 //-----------
-
-
-//                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//                String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
-//                Log.d("tag", "onActivityResult: Gallery Image Uri: " + imageFileName);
-//
-//                //**************
-//                try{
-//                    // Convert Uri to Bitmap
-//                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentUri);
-//                } catch(IOException e) {
-//                    e.printStackTrace();
-//                }
-//                selectedImage.setImageBitmap(imageBitmap);
-//                //**************
-//
-//                //selectedImage.setImageURI(contentUri);
-
 
                 // Pre-processing for image coming from gallery
                 //--------------------------------------
@@ -2815,34 +2481,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
                 // Making the Bitmap take less place in memory
                 imageBitmap = null;
-
-                //--------------------------------------
-//                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                if (ok_for_tiles_identification) {
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
-                // Alternative to handle the eventual error in the pre-processing part for the tiles identification
-                //--------------------------------------
-//                try {
-//                    boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } catch (Exception e) {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!). ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
 
                 computerVisionBtn.setEnabled(true);
                 textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
@@ -3179,19 +2817,7 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         fabClearLast.setOnClickListener(this);
         fabClearAll.setOnClickListener(this);
 
-//        fabMiddleTile.
-//        fabGoForward.
-//        fabGoBackward.
-//        fabTurnRight.
-//        fabTurnLeft.
-//        fabTurnBack.
-//        fabStartRepeat.
-//        fabEndRepeat.
-//        fabTwo.
-//        fabThree.
-//        fabFour.
-//        fabClearLast.
-//        fabClearAll.
+
     }
 
 
@@ -3387,14 +3013,6 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
 
     private void handleFabClearAll() {
 
-        //--------
-//        while (commands_digital_ArrayList.size() > 0) {
-//            handleFabClearLast();
-//        }
-        //--------
-
-
-
         // We can execute this only if the Cardbot is NOT moving
 
         // 0)
@@ -3541,86 +3159,14 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         arrayAdapter.setDropDownViewResource(R.layout.spinner_list_example_pictures);
         spinnerSequencePictureExamples.setAdapter(arrayAdapter);
 
-
-//        MyArrayAdapter ma = new MyArrayAdapter(this);
-//        spinnerSequencePictureExamples.setAdapter(ma);
-
         spinnerSequencePictureExamples.setOnItemSelectedListener(new CustomOnItemSelectedListenerForExamplePictureOfSequence());
     }
 
 
 
 
-// Cf.: https://stackoverflow.com/questions/19150588/android-spinner-change-font-typeface/19150605
-//    private class MyArrayAdapter extends BaseAdapter {
-//
-//        private LayoutInflater mInflater;
-//
-//        public MyArrayAdapter(FreeGameActivity con) {
-//            // TO DO Auto-generated constructor stub
-//            mInflater = LayoutInflater.from(con);
-//        }
-//
-//
-//        @Override
-//        public int getCount() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            // TO DO Auto-generated method stub
-//            return position;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            // TO DO Auto-generated method stub
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            // TO DO Auto-generated method stub
-//            final ListContent holder;
-//            View v = convertView;
-//            if (v == null) {
-//                v = mInflater.inflate(R.layout.my_spinner_style, null);
-//                holder = new ListContent();
-//
-//                holder.name = (TextView) v.findViewById(R.id.textView1);
-//
-//                v.setTag(holder);
-//            } else {
-//
-//                holder = (ListContent) v.getTag();
-//            }
-//
-//            Typeface type = Typeface.createFromAsset(getAssets(),"fonts/chalkboardseregular.ttf");
-//
-//            holder.name.setTypeface(type);
-//
-//            return v;
-//        }
-//
-//    }
-//
-//    static class ListContent {
-//
-//        TextView name;
-//
-//    }
 
-
-
-
-
-
-
-
-
-
-    //get the selected dropdown list value
+    // Get the selected dropdown list value
     public void addListenerOnValidateBtn() {
 
         spinnerSequencePictureExamples = (Spinner) findViewById(R.id.spinner_sequence_picture_examples);
@@ -3691,26 +3237,9 @@ public class FreeGameActivity extends AppCompatActivity implements ConnectionSta
         // Making the Bitmap take less place in memory
         selectedImage_Bitmap = null;
 
-        // Since these pictures are test pictures, I know that the computer vision algorithm works on them. Hence there is no need to test, beforehand, if the computer vision algorithm will work or not.
-//                        boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                        if (ok_for_tiles_identification) {
-//                            Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                            // Making consequently the computerVisionBtn clickable
-//                            computerVisionBtn.setEnabled(true);
-//                            //spinner.setVisibility(View.VISIBLE);
-//                            textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few second to execute then)");
-//                        } else {
-//                            Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
-//                            // Making consequently the computerVisionBtn NOT clickable
-//                            computerVisionBtn.setEnabled(false);
-//                        }
         computerVisionBtn.setEnabled(true);
 
     }
-
-
-
-
 
 
 

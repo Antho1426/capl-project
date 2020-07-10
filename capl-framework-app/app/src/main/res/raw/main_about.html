@@ -1,0 +1,84 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<!--
+	<img src="file:///android_asset/help/bluetooth_sig.png"/>
+-->
+	<STYLE type="text/css">
+    ul, ol, p { text-align: justify}
+</STYLE>
+
+
+
+	<h2>About This Application</h2>
+	<h3>Version 1.0</h3>
+	<h3>Author: Anthony Guinchard</h3>
+	<h3>Email: <a href="anthony.guinchard@epfl.ch">anthony.guinchard@epfl.ch</a></h3>
+
+	<h3>Context: EPFL Master in Robotics, Semester project Spring 2020</h3>
+
+	<p>Research conducted in recent years showed that the use of tangible platforms for teaching the basics of programming to children can improve their engagement, interest and collaboration. An important drawback of these robotics educational platforms, however, is that they might be expensive and a lot of schools are not able to afford them. In 2019, EPFL developed two accessible tangible programming language systems: Thymio TPL and Thymio PaPL.
+	</p>
+
+	<p>
+		As part of my first semester project in Spring 2020, I took part in the development of a new low-cost and accessible tangible programming language based on cardboard. This project was hence called Cardboard-based Programming Language (CaPL).
+
+		Based on the <i>micro:bit Blue</i> Android app made by Martin Woolley (a senior British developer and Bluetooth expert), this application is the cornerstone of the CaPL project. Its main purpose is to enable communication between the cardboard-based robot, called Cardbot, and the CaPL tangible programming tiles. In addition, the CaPL app provides also different kinds of feedback regarding the execution of the code by the Cardbot. It is composed of several activities among which the most interesting are:
+	<ul>
+		<li>The "Free Game"</li>
+		<li>The "Geography Game"</li>
+		<li>The "Easter Egg"</li>
+	</ul>
+
+	More details regarding the functionalities of each of these activities are given in their respective "info" menu.
+
+	</p>
+
+	<p>
+		The work presented here provides a base for future Android activities around the Cardbot and other micro:bit-based robots. Moreover, the Android activities can be easily adapted to various age groups by, for instance, changing the displacement costs of the robot in the "Geography Game", by including new rules or by implementing more advanced MCQs.
+	</p>
+
+
+	<div style='text-align:center'>
+		<!-- insert picture in html, cf.: https://www.w3schools.com/html/html_images.asp -->
+		<!-- original size: 4000 x 1983 -> 1000 x 496 -> 500 x 248 -->
+		<img src="file:///android_asset/help/title_picture.png" alt="Title picture of CaPL project report" width="500" height="248">
+		<!--
+            <img src="file:///android_asset/help/title_picture.png"/>
+        -->
+		<div style='text-align:left'>
+
+			<h3>Read this before using this application!</h3>
+
+
+
+			<p>Note that if you're using a micro:bit which has the standard out of box firmware on it or some version derived from this, then Bluetooth security is used and you *must* pair your micro:bit with your Android device before you can use this application. To do so go into Settings/Bluetooth on your phone/tablet.</p>
+
+			<p>Then, to pair with a micro:bit it must first be placed in "pairing mode". To do this, hold down both buttons A and B and press and hold the reset button. This will result in "PAIRING MODE" scrolling across the display followed by the graphical representation of the micro:bit 5 character identifier.</p>
+
+			<p>Now initiate pairing on the phone or tablet. On Android for example, go into Settings/Bluetooth and allow the system to scan for and discover the advertising micro:bit. Select it and pairing will commence. The micro:bit will indicate it is ready to pair by displaying an arrow which points left towards button A. Press button A and a 6 digit number will be displayed on the micro:bit, one digit at a time. The Android device should now allow you to enter the 6 digit pass key. Do so and if the correct number was entered into the peer, micro:bit will display a tick/check to indicate pairing was achieved.</p>
+
+
+
+</body>
+</html>

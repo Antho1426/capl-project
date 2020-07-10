@@ -7,9 +7,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import ch.epfl.mobots.capl.R;
-//import com.bluetooth.mwoolley.microbitbledemo.R;
-
-//import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -41,7 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
             startActivity(intent);
-            SplashScreenActivity.this.finish(); // to destroy SpashScreenActivity and MainActivity will be the only activity that remains so far...
+            SplashScreenActivity.this.finish(); // to destroy SplashScreenActivity and MainActivity will be the only activity that remains after that
             // After that, the control is given to MainActivity
 
         }

@@ -136,14 +136,8 @@ public class MenuActivity extends AppCompatActivity implements ConnectionStatusL
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_menu_help) {
-//            if (MicroBit.getInstance().isMicrobit_services_discovered()) {
-//                Intent intent = new Intent(MenuActivity.this, HelpActivity.class);
-//                intent.putExtra(Constants.URI, Constants.MENU_HELP);
-//                startActivity(intent);
-//                return true;
-//            } else {
-//                Log.d(Constants.TAG,"Services not yet discovered");
-//            }
+
+
             Intent intent = new Intent(MenuActivity.this, HelpActivity.class);
             intent.putExtra(Constants.URI, Constants.MENU_HELP);
             startActivity(intent);

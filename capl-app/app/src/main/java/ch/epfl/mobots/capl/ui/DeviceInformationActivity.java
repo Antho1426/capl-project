@@ -90,26 +90,7 @@ public class DeviceInformationActivity extends AppCompatActivity implements Conn
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_device_information, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        int id = item.getItemId();
-//
-//        if (id == R.id.menu_device_information_help) {
-//            Intent intent = new Intent(DeviceInformationActivity.this, HelpActivity.class);
-//            intent.putExtra(Constants.URI, Constants.DEVICE_INFORMATION_HELP);
-//            startActivity(intent);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     private Handler mMessageHandler = new Handler() {
         @Override

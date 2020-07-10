@@ -88,13 +88,6 @@ public class ControlledImageView extends AppCompatActivity {
 
         mapFrame = (FrameLayout) findViewById(R.id.map_frame);
 
-        //cardBot_Init = getResources().getDrawable(R.drawable.virtual_cardbot_init);
-        // cardBot_GoForward = getResources().getDrawable(R.drawable.virtual_cardbot_go_forward);
-        // cardBot_GoBackward = getResources().getDrawable(R.drawable.virtual_cardbot_go_backward);
-        // cardBot_TurnRight = getResources().getDrawable(R.drawable.virtual_cardbot_turn_right);
-        // cardBot_TurnLeft = getResources().getDrawable(R.drawable.virtual_cardbot_turn_left);
-        // cardBot_TurnBack = getResources().getDrawable(R.drawable.virtual_cardbot_turn_back);
-        //cardBot_Blocked = getResources().getDrawable(R.drawable.virtual_cardbot_blocked);
 
         btnGoForward = (Button) findViewById(R.id.btn_go_forward);
         btnGoBackward = (Button) findViewById(R.id.btn_go_backward);
@@ -197,24 +190,6 @@ public class ControlledImageView extends AppCompatActivity {
         boxFinish.setY(boxY_Finish);
 
 
-//        findViewById(R.id.btn_up).setOnTouchListener(this);
-//        findViewById(R.id.btn_down).setOnTouchListener(this);
-//        findViewById(R.id.btn_right).setOnTouchListener(this);
-//        findViewById(R.id.btn_left).setOnTouchListener(this);
-//        findViewById(R.id.btn_back).setOnTouchListener(this);
-
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//           @Override
-//           public void run() {
-//               handlerMap.post(new Runnable() {
-//                   @Override
-//                   public void run() {
-//                       changePos();
-//                   }
-//               });
-//           }
-//        }, 0, 20);
 
 
     }
@@ -230,29 +205,6 @@ public class ControlledImageView extends AppCompatActivity {
 
 
 
-    // Rotate ImageView
-    // Cf.: https://www.tutorialspoint.com/how-to-rotate-image-in-image-view-by-an-angle-in-android
-    // Rotate ImageView to the right by 90°
-//    private void rotateRight(ImageView imageView) {
-//        Matrix matrix = new Matrix();
-//        imageView.setScaleType(ImageView.ScaleType.MATRIX); //required
-//        matrix.postRotate((float) 90, imageView.getDrawable().getBounds().width()/2,    imageView.getDrawable().getBounds().height()/2);
-//        imageView.setImageMatrix(matrix);
-//    }
-//    // Rotate ImageView to the left by 90°
-//    private void rotateLeft(ImageView imageView) {
-//        Matrix matrix = new Matrix();
-//        imageView.setScaleType(ImageView.ScaleType.MATRIX); //required
-//        matrix.postRotate((float) -90, imageView.getDrawable().getBounds().width()/2,    imageView.getDrawable().getBounds().height()/2);
-//        imageView.setImageMatrix(matrix);
-//    }
-//    // Rotate ImageView to the right by 180°
-//    private void rotateBack(ImageView imageView) {
-//        Matrix matrix = new Matrix();
-//        imageView.setScaleType(ImageView.ScaleType.MATRIX); //required
-//        matrix.postRotate((float) 180, imageView.getDrawable().getBounds().width()/2,    imageView.getDrawable().getBounds().height()/2);
-//        imageView.setImageMatrix(matrix);
-//    }
 
 
 
@@ -410,43 +362,6 @@ public class ControlledImageView extends AppCompatActivity {
 
 
 
-//    @Override
-//    public boolean onTouch(View view, MotionEvent motionEvent) {
-//
-//        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-//            switch (view.getId()) {
-//                case R.id.btn_up:
-//                    action_up = true;
-//                    break;
-//                case R.id.btn_down:
-//                    action_down = true;
-//                    break;
-//                case R.id.btn_right:
-//                    action_right = true;
-//                    break;
-//                case R.id.btn_left:
-//                    action_left = true;
-//                    break;
-//                case R.id.btn_back:
-//                    action_back = true;
-//                    break;
-//            }
-//        } else {
-//            action_up = false;
-//            action_down = false;
-//            action_right = false;
-//            action_left = false;
-//            action_back = false;
-//        }
-//
-//        return true;
-//    }
-
-
-
-
-
-
 
 
 
@@ -510,18 +425,6 @@ public class ControlledImageView extends AppCompatActivity {
 
 
 
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handlerMap.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos();
-//                    }
-//                });
-//            }
-//        }, 0, period);
     }
 
 
@@ -532,8 +435,6 @@ public class ControlledImageView extends AppCompatActivity {
         action_left = false;
         action_back = false;
 
-        //cardBot_GoBackward = getResources().getDrawable(R.drawable.virtual_cardbot_go_backward);
-        //cardBot.setImageDrawable(cardBot_GoBackward);
         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_go_backward));
 
         for (int i = 0; i < dispRepetition; i++) {
@@ -573,21 +474,7 @@ public class ControlledImageView extends AppCompatActivity {
         }, 1500);
 
 
-//        for (int i = 0; i < 100; i++) {
-//            changePos();
-//        }
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handlerMap.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos();
-//                    }
-//                });
-//            }
-//        }, 0, period);
+
     }
 
 
@@ -653,18 +540,6 @@ public class ControlledImageView extends AppCompatActivity {
         }, 1500);
 
 
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handlerMap.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos();
-//                    }
-//                });
-//            }
-//        }, 0, period);
     }
 
 
@@ -730,18 +605,6 @@ public class ControlledImageView extends AppCompatActivity {
         }, 1500);
 
 
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handlerMap.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos();
-//                    }
-//                });
-//            }
-//        }, 0, period);
     }
 
 
@@ -806,19 +669,7 @@ public class ControlledImageView extends AppCompatActivity {
             }
         }, 1500);
 
-
-        // Start the timer
-//        timerMap.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handlerMap.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos();
-//                    }
-//                });
-//            }
-//        }, 0, period);
+        
     }
 
 

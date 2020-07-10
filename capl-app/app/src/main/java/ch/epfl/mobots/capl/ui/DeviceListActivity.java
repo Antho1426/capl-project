@@ -192,12 +192,7 @@ public class DeviceListActivity extends AppCompatActivity implements ScanResults
             startActivity(intent);
             return true;
         }
-//        if (id == R.id.menu_main_about) {
-//            Intent intent = new Intent(DeviceListActivity.this, HelpActivity.class);
-//            intent.putExtra(Constants.URI, Constants.MAIN_ABOUT);
-//            startActivity(intent);
-//            return true;
-//        }
+
         return super.onOptionsItemSelected(item);
     }
 

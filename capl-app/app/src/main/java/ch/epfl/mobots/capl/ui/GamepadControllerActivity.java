@@ -140,11 +140,7 @@ public class GamepadControllerActivity extends AppCompatActivity implements Conn
 
         int id = item.getItemId();
 
-//        if (id == R.id.menu_gamepad_settings) {
-//            Intent intent = new Intent(GamepadControllerActivity.this, GamepadControllerSettingsActivity.class);
-//            startActivity(intent);
-//            return true;
-//        }
+
         if (id == R.id.controller_action_info) {
             Intent intent = new Intent(GamepadControllerActivity.this, HelpActivity.class);
             intent.putExtra(Constants.URI, Constants.CONTROLLER_HELP);

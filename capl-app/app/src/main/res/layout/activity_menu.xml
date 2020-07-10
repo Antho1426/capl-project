@@ -231,10 +231,10 @@
 
 
 
-
-
-
-
+<!-- Hidden activities to make visible and to reprogram (based on the original micro:bit Blue app)
+ in case of interest for an interface to the accelerometer, the temperature sensor or the LED matrix
+ of the microbit -->
+<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
 
 
 

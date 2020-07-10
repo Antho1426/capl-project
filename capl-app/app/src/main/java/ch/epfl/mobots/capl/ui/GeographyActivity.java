@@ -161,10 +161,12 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
 
 
+
+    // Costs of the path and rewards for answering questions
     //////////////////////////////////////
     //++++++++++++++++++++++++++++++++++++
     //////////////////////////////////////
-    // To Be adjusted by the teachers:
+    // To Be adjusted by the teachers to make the game more or less difficult:
     // Increases
     int IncreasePointsWhenGoalReached = 30;
     int IncreasePointsWhenCorrectResponseToMCQ = 20;
@@ -194,11 +196,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
     int RotationAnimation90Degrees = 1000;
     int RotationAnimation180Degrees = 1800;
     //++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
 
 
 
@@ -517,46 +514,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         // Adjusting the coordinates of the Cardbot to save
         boxX = cardBot.getX();
         boxY = cardBot.getY();
-//        XCoord = (int) (Math.round(boxX/dispRepetition)+1);
-//        YCoord = (int) (Math.round(boxY/dispRepetition)+1);
-//        last_command_to_execute = interpreted_commands[interpreted_commands.length-1];
-//        switch (last_command_to_execute) {
-//            case "go_forward":
-//
-//                switch (orientation) {
-//                    case "North":
-//                        boxY = (float) (boxY - dispRepetition);
-//                        break;
-//                    case "South":
-//                        boxY = (float) (boxY + dispRepetition);
-//                        break;
-//                    case "West":
-//                        boxX = (float) (boxX - dispRepetition);
-//                        break;
-//                    case "East":
-//                        boxX = (float) (boxX + dispRepetition);
-//                        break;
-//                }
-//                break;
-//
-//            case "go_backward":
-//
-//                switch (orientation) {
-//                    case "North":
-//                        boxY = (float) (boxY + dispRepetition);
-//                        break;
-//                    case "South":
-//                        boxY = (float) (boxY - dispRepetition);
-//                        break;
-//                    case "West":
-//                        boxX = (float) (boxX + dispRepetition);
-//                        break;
-//                    case "East":
-//                        boxX = (float) (boxX - dispRepetition);
-//                        break;
-//                }
-//                break;
-//        }
+
         savedInstanceState.putFloat(String.valueOf(STATE_CARDBOT_BOXX), boxX);
         savedInstanceState.putFloat(String.valueOf(STATE_CARDBOT_BOXY), boxY);
         savedInstanceState.putString(STATE_CARDBOT_ORIENTATION, orientation);
@@ -594,23 +552,12 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         o.inDither = false;
         o.inSampleSize = 4;
 
-        // Bitmap to Mat
-        //Mat image = new Mat();
-        //Utils.bitmapToMat(imageBitmap, image);
-
-        //int width = imageBitmap.getWidth();
         int width = selectedImage.getWidth();
-        //int height = imageBitmap.getHeight();
 
-        // Computer vision part on the newly created Mat object
-        //Mat grayMat = new Mat();
-        //Imgproc.cvtColor(image, grayMat, Imgproc.COLOR_RGB2GRAY);
-        //Utils.matToBitmap(grayMat, grayBitmap);
 
 
 
         //-----
-        //String[] commands = ComputerVision.TilesIdentification(image);
         Pair<String[], Mat> result = ComputerVision.TilesIdentification(image, two, three, four, end_repeat, go_backward, go_forward, start_repeat, turn_back, turn_left, turn_right); // "How to return multiple objects from a Java method?" --> cf.: https://stackoverflow.com/questions/457629/how-to-return-multiple-objects-from-a-java-method
         // Retrieving the outputs of ComputerVision algo
         commands = result.first;
@@ -622,21 +569,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
             textViewIdentifiedCommands.setText("");
         }
         //-----
-
-
-
-        // In the final app the AsyncTask doesn't consider following part to put the rectified image
-        // in the ImageView anyway
-        //------------------------------
-//        croppedBitmap = Bitmap.createBitmap(cropped.cols(), cropped.rows(), Bitmap.Config.RGB_565);
-//        //croppedBitmap = Bitmap.createBitmap(width, (int) (cropped.rows()*(double)width/cropped.cols()), Bitmap.Config.RGB_565);
-//        Utils.matToBitmap(cropped, croppedBitmap);
-//        int height = (int) (cropped.rows()*(double)width/cropped.cols());
-//        croppedBitmap_resized = Bitmap.createScaledBitmap(croppedBitmap, width, height, true);
-//        // Setting "cropped sequence of commands" in the ImageView selectedImage
-//        selectedImage.setImageBitmap(croppedBitmap_resized);
-        //------------------------------
-
 
 
     }
@@ -1000,12 +932,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
                     iteration_in_loop_final = iteration_in_loop;
 
-                    // Getting the "interpreted_commands" info:
-                    //interpreted_commands[i]
-                    // Getting the "iteration_in_loop" info:
-                    //for (int i=0; i<number_of_for_loops; i++) {
-                    //    System.out.println("   • Iterations in 'for loop' "+i+ ":\n    " + iteration_in_loop.get(i));
-                    //}
 
 
                 }
@@ -1190,11 +1116,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
                     //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
-                    //currentExecutedCommandImageView = (ImageView) findViewById(R.id.current_executed_command_image_view);
-                    //textViewCurrentExecutedCommand = (TextView) findViewById(R.id.current_executed_command_text_view);
-                    //textViewCurrentIterationInForLoops = (TextView) findViewById(R.id.current_iteration_in_for_loops_text_view);
-                    //textViewNumberOfForLoops = (TextView) findViewById(R.id.number_of_for_loops_text_view);
-
                     MicroBitEvent mb_event;
                     short event_value = 0;
                     Settings settings = Settings.getInstance();
@@ -1254,8 +1175,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                             }
 
                             // Adjusting the ImageView and the TextView accordingly (to have feedback)
-                            //currentExecutedCommandImageView.setImageResource(R.drawable.tile_template_go_backward_red_square);
-                            //((ImageView) findViewById(R.id.current_executed_command_image_view)).setImageResource(R.drawable.tile_template_go_backward_red_square);
                             currentExecutedCommandImageView.setImageDrawable(getResources().getDrawable(R.drawable.tile_template_go_backward_red_square));
                             textViewCurrentExecutedCommand.setText("Current command:\n   go backward");
                             break;
@@ -1450,16 +1369,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
 
 
-                    //computer_vision_completed = false; // in order for the user to not be able to resend twice the same series of commands one after the other. If he wants to resend a command, he would have to re-perform a "computer vision" step
-
-
-                    // We let the system sleep for 1 second for the time of the execution of the current command
-                    //TimeUnit.SECONDS.sleep(1);
-
-
-
-
-
 
                     //------------------------------------------------------------------------------
 
@@ -1467,13 +1376,11 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     // Checking if we moved into terrain or water and applying corresponding cost
                     if (matGroundType.get(YCoord-1,XCoord-1)[0] == 1) { // This means that we arrived on a terrain box
                         // Change battery level
-                        // + 20% of battery level
                         //----------
                         changeBatteryLevel(DecreasePointsWhenDisplacementOnTERRAIN);
                         //----------
                     } else { // This means that we arrived on a box with water
                         // Change battery level
-                        // + 20% of battery level
                         //----------
                         changeBatteryLevel(DecreasePointsWhenDisplacementOnWATER);
                         //----------
@@ -1569,10 +1476,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                         // DESTINATION REACHED ?
                         //-----------------------
                         // Checking if we have reached the destination (i.e. if this question is situated at the "destination box")
-//                        boxX = cardBot.getX();
-//                        boxY = cardBot.getY();
-//                        XCoord = (int) (Math.round(boxX/dispRepetition)+1);
-//                        YCoord = (int) (Math.round(boxY/dispRepetition)+1);
                         if ( (XCoord_perceived == XCoord_Goal) & (YCoord_perceived  == YCoord_Goal) ) {
                             GoalReached = true;
                             buttonTimer = new Timer();
@@ -1586,7 +1489,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                                             goalReachedCounter += 1;
                                             textViewDestinationReachedCounter.setText(Integer.toString(goalReachedCounter));
                                             // Change battery level
-                                            // + 20% of battery level
                                             //----------
                                             changeBatteryLevel(IncreasePointsWhenGoalReached);
                                             //----------
@@ -1682,33 +1584,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
     }
 
 
-
-
-    // Decodes image and scales it to reduce memory consumption
-//    private Bitmap decodeFile(File f) {
-//        try {
-//            // Decode image size
-//            BitmapFactory.Options o = new BitmapFactory.Options();
-//            o.inJustDecodeBounds = true;
-//            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
-//
-//            // The new size we want to scale to
-//            final int REQUIRED_SIZE=70;
-//
-//            // Find the correct scale value. It should be the power of 2.
-//            int scale = 1;
-//            while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
-//                    o.outHeight / scale / 2 >= REQUIRED_SIZE) {
-//                scale *= 2;
-//            }
-//
-//            // Decode with inSampleSize
-//            BitmapFactory.Options o2 = new BitmapFactory.Options();
-//            o2.inSampleSize = scale;
-//            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-//        } catch (FileNotFoundException e) {}
-//        return null;
-//    }
 
 
     public static Bitmap decodeFile(File f,int WIDTH,int HIGHT){
@@ -1831,97 +1706,8 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
     private File createImageFile() throws IOException {
         Log.d("tag", "Entering createImageFile");
 
-        //-------------------------------------------------
-//        // Create an image file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_"; // creating the image file
-//        // setting the storage directory
-//        // cf.: https://androidpedia.net/en/tutorial/150/storing-files-in-internal-external-storage
-//        //------------------
-//        // ✓ The line below works (worked initially) for the tablet "NVIDIA SHIELD Tablet K1" (for both taking the picture and saving it to the folder "Pictures")
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        //------------------
-//        File storageDir = getApplicationContext().getFilesDir();
-//        //File storageDir = Environment.getExternalStorageDirectory();
-//        //File storageDir = Environment.getDataDirectory();
-//        //File storageDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
-//        //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES); // <-- this directory works (when we have no SD card inserted in the tablet) (but this doesn't allow to save the picture taken in the memory of the tablet...)
-//
-//        // checking that our directory exists:
-//        //storageDir.isDirectory();
-//
-//        // checking if we can create the .jpg file in which we are going to put our picture
-//        //File.createTempFile(imageFileName,".jpg",storageDir)
-//
-//        // checking the valid locations for directory:
-//        //getApplicationContext().getFilesDir()
-//
-//        File image = File.createTempFile(
-//                imageFileName,  /* prefix */
-//                ".jpg",   /* suffix */
-//                storageDir      /* directory */
-//        );
-//
-//        // Save a file: path for use with ACTION_VIEW intents
-//        currentPhotoPath = image.getAbsolutePath(); // getting the absolute path of the image where it is saved
-        //-------------------------------------------------
-
-
-
-        // A 1st alternative
-        //-------------------------------------------------
-        // Cf.: https://thetopsites.net/article/50621645.shtml
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        File image = null;
-//        try {
-//            image = File.createTempFile(timeStamp, ".jpg", storageDir);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        currentPhotoPath = String.valueOf(Uri.fromFile(image));
-        //-------------------------------------------------
-
-
-        // A 2nd alternative
-        // Cf.: https://stackoverflow.com/questions/17150597/file-createtempfile-vs-new-file
-        //-------------------------------------------------
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_"+".jpg"; // creating the image file
-//        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        File storageDir = Environment.getExternalStorageDirectory();
-//        //File image = new File(this.getCacheDir(), imageFileName);
-//        File image = new File(storageDir, imageFileName);
-//        currentPhotoPath = image.getAbsolutePath(); // getting the absolute path of the image where it is saved
-        //-------------------------------------------------
-
-
-
-
-
-
-        // A 3rd alternative
-        //-------------------------------------------------
-        // Cf.: https://stackoverflow.com/questions/42628247/android-save-picture-in-internal-storage-what-am-i-doing-wrongfile-not-found
-        // External sdcard location
-        // directory name to store captured images and videos
-        //final String IMAGE_DIRECTORY_NAME = "PaPL";
-        //final int MEDIA_TYPE_IMAGE = 1;
-        //File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
-//        File mediaStorageDir = new File(getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
-//        // Cf.: https://stackoverflow.com/questions/24781213/how-to-create-a-folder-in-android-external-storage-directory
-//        if (!mediaStorageDir.exists()) {
-//            mediaStorageDir.mkdirs();
-//        }
-        //File mediaStorageDir = getExternalCacheDir();
-        //File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        //File mediaStorageDir = getFilesDir();
-//        File f= new File(mediaStorageDir, "PaPL");
-//        if (!f.exists()) {
-//            f.mkdir();;
-//        }
+
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         imageFile = new File(mediaStorageDir.getPath() + File.separator
@@ -1995,10 +1781,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
                 }
-                // Requesting rather this permission at any rate
-//                ActivityCompat.requestPermissions(FreeGameActivity.this,
-//                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
                 //--------------
 
 
@@ -2276,6 +2059,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         // Creating the matrix containing the locations on the map where we have some questions
         // 0 = no question
         // 1 = question
+        // Only '1s'
         int[][] intArrayMCQ = new int[][]{
                 {1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -2287,6 +2071,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 {1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1},
         };
+        // Only '0s'
 //        int[][] intArrayMCQ = new int[][]{
 //                {0,0,0,0,0,0,0,0,0,0,0,0,0},
 //                {0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -2298,6 +2083,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 //                {0,0,0,0,0,0,0,0,0,0,0,0,0},
 //                {0,0,0,0,0,0,0,0,0,0,0,0,0},
 //        };
+        // Alternation of '0s' and '1s'
 //        int[][] intArrayMCQ = new int[][]{
 //                {1,0,1,0,1,0,1,0,1,0,1,0,1},
 //                {0,1,0,1,0,1,0,1,0,1,0,1,0},
@@ -2422,15 +2208,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         dispRepetition = Math.max((double) mapFrame.getLayoutParams().height/nRows, (double) mapFrame.getLayoutParams().width/nCols); // This is then around "77" for the NVIDIA tablets
         translation_distance = (float) dispRepetition;
 
-
-        // Drawables
-        //cardBot_Init = getResources().getDrawable(R.drawable.virtual_cardbot_init);
-//        cardBot_GoForward = getResources().getDrawable(R.drawable.virtual_cardbot_go_forward);
-//        cardBot_GoBackward = getResources().getDrawable(R.drawable.virtual_cardbot_go_backward);
-//        cardBot_TurnRight = getResources().getDrawable(R.drawable.virtual_cardbot_turn_right);
-//        cardBot_TurnLeft = getResources().getDrawable(R.drawable.virtual_cardbot_turn_left);
-//        cardBot_TurnBack = getResources().getDrawable(R.drawable.virtual_cardbot_turn_back);
-//        cardBot_Blocked = getResources().getDrawable(R.drawable.virtual_cardbot_blocked);
 
         // Setting the chalkboard se font to some TextViews and the EditText
         textViewNumberOfPlayers = (TextView) findViewById(R.id.text_view_number_of_players);
@@ -3097,26 +2874,8 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
 
 
-
-        //------------------------------------------------------------------------------------------
-        //        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data!=null) {
-//            imageUri = data.getData();
-//            try{
-//                // Convert Uri to Bitmap
-//                imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//            } catch(IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            selectedImage.setImageBitmap(imageBitmap);
-//        }
-
-
-
         if (requestCode == CAMERA_REQUEST_CODE) {
-            // Capture the image and set it as background for the ImageView
-//            Bitmap imageBit = (Bitmap) data.getExtras().get("data");
-//            selectedImage.setImageBitmap(image);
+
             if (resultCode == Activity.RESULT_OK) {
 
                 //-----------
@@ -3142,9 +2901,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 {
                     e.printStackTrace();
                 }
-                //imageBitmap = decodeFile(f,400,400);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
-                // /!\ Since GeographyActivity requires has not a lot of memory left, we can only go up to 1125 x 1500 (rather than 1944 x 2592) (but it has the same ratio: 750/1000 = 0.75 = 1944/2592)
-                //imageBitmap = decodeFile(f,1000,750);
+
                 imageBitmap = decodeFile(f,2592,1944);
 
                 selectedImage.setImageBitmap(imageBitmap);
@@ -3154,33 +2911,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
 
 
-                //********************************
 
-//                // /!\ "currentPhotoPath" seems to have been saved in the case of the tablet but NOT
-//                // for my phone!!
-//                File f = new File(currentPhotoPath); //File f = new File(imageFile.getAbsolutePath());
-//                selectedImage.setImageURI(Uri.fromFile(f));
-//                Log.d("tag", "Absolute Url of Image is: " + Uri.fromFile(f));
-//
-//                //Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-//                Uri contentUri = Uri.fromFile(f);
-//                //Uri contentUri = data.getData();
-//
-//
-//                //**************
-//                try{
-//                    // Convert Uri to Bitmap
-//                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentUri);
-//                } catch(IOException e) {
-//                    e.printStackTrace();
-//                }
-//                selectedImage.setImageBitmap(imageBitmap);
-//                //**************
-//
-//                //mediaScanIntent.setData(contentUri);
-//                //this.sendBroadcast(mediaScanIntent);
-
-                //********************************
 
                 // Pre-processing (for image coming from camera)
                 //--------------------------------------
@@ -3193,33 +2924,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
                 imageBitmap = null;
 
-                //--------------------------------------
-//                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                if (ok_for_tiles_identification) {
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
-                // Alternative to handle the eventual error in the pre-processing part for the tiles identification
-                //--------------------------------------
-//                try {
-//                    boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } catch (Exception e) {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!). ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
 
                 computerVisionBtn.setEnabled(true);
                 textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
@@ -3262,9 +2966,7 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 {
                     e.printStackTrace();
                 }
-                //imageBitmap = decodeFile(f,400,400);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
-                // /!\ Since GeographyActivity requires has not a lot of memory left, we can only go up to 1125 x 1500 (rather than 1944 x 2592) (but it has the same ratio: 750/1000 = 0.75 = 1944/2592)
-                //imageBitmap = decodeFile(f,1000,750);
+
                 imageBitmap = decodeFile(f,2592,1944);
 
                 selectedImage.setImageBitmap(imageBitmap);
@@ -3294,7 +2996,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 if (numberOfTokensPresent < numberOfTokensEditText) { // In the case where we have less physical tokens than the number entered by the users
                     Toast.makeText(GeographyActivity.this, "⚠️ Number of tokens detected is less than the expected number of tokens... You won't get the maximum amount of energy...", Toast.LENGTH_LONG).show();
                     // Change battery level
-                    // - 20% of battery level
                     //----------
                     changeBatteryLevel(DecreasePointsWhenNumberOfTokensPresentLessThanNumberOfTokensEditText);
                     //----------
@@ -3308,14 +3009,12 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 if (responseToMCQ) {
                     Toast.makeText(GeographyActivity.this, "Correct! 😃🎉 the answer is: " + mAnswer, Toast.LENGTH_SHORT).show(); // mQuestionLibraryCaPL.getCorrectAnswer(mQuestionNumber)
                     // Change battery level
-                    // + 20% of battery level
                     //----------
                     changeBatteryLevel(IncreasePointsWhenCorrectResponseToMCQ);
                     //----------
                 } else {
                     Toast.makeText(GeographyActivity.this, "Incorrect... 🙁 the answer is: " + mAnswer, Toast.LENGTH_SHORT).show();
                     // Change battery level
-                    // + 20% of battery level
                     //----------
                     changeBatteryLevel(DecreasePointsWhenCorrectResponseToMCQ);
                     //----------
@@ -3375,40 +3074,15 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 {
                     e.printStackTrace();
                 }
-                //imageBitmap = decodeFile(f,400,400);////after this use base64 to convet image because this function will do your file size in very normal size..so, outofMemory error not occured..
-                // /!\ Since GeographyActivity requires has not a lot of memory left, we can only go up to 750 x 1000 (rather than 1944 x 2592) (but it has the same ratio: 750/1000 = 0.75 = 1944/2592)
-                //imageBitmap = decodeFile(f,1000,750);
+
                 imageBitmap = decodeFile(f,2592,1944);
 
                 selectedImage.setImageBitmap(imageBitmap);
-
 
                 //-----------
 
 
 
-
-
-
-
-
-//                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//                String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
-//                Log.d("tag", "onActivityResult: Gallery Image Uri: " + imageFileName);
-//
-//                //**************
-//                try{
-//                    // Convert Uri to Bitmap
-//                    //imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentUri);
-//                    imageBitmap = decodeSampledBitmapFromFile(imagePath, 400, 400);
-////                } catch(IOException e) {
-//                } catch(Exception e) {
-//                    e.printStackTrace();
-//                }
-//                selectedImage.setImageBitmap(imageBitmap);
-//                //**************
-//
-//                //selectedImage.setImageURI(contentUri);
 
 
                 // Pre-processing for image coming from gallery
@@ -3421,34 +3095,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                 Utils.bitmapToMat(imageBitmap, image);
 
                 imageBitmap = null;
-
-                //--------------------------------------
-//                boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                if (ok_for_tiles_identification) {
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!)", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
-                // Alternative to handle the eventual error in the pre-processing part for the tiles identification
-                //--------------------------------------
-//                try {
-//                    boolean ok_for_tiles_identification = ComputerVision.preProcessingToCheckIfTilesIdentificationIsOK(image);
-//                    Toast.makeText(getApplicationContext(), "✓ It will be ok for identifying the tiles", Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn clickable
-//                    computerVisionBtn.setEnabled(true);
-//                    textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
-//                } catch (Exception e) {
-//                    Toast.makeText(getApplicationContext(), "✗ Please consider using another picture (make sure we clearly distinguish a rectangle that is roughly horizontal and that doesn't touch the border of the image at all!). ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    // Making consequently the computerVisionBtn NOT clickable
-//                    computerVisionBtn.setEnabled(false);
-//                }
-                //--------------------------------------
 
                 computerVisionBtn.setEnabled(true);
                 textViewIdentifiedCommands.setText("Waiting for the user to click on 'Identify tiles' (this might take a few seconds to execute then)");
@@ -3751,33 +3397,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         YCoord = (int) (Math.round(boxY/dispRepetition)+1);
 
 
-        // First, check the boundaries of the map
-//        // Vertical boundaries
-//        if ( boxY < 0 ) {
-//            //cardBot.setImageDrawable(cardBot_Blocked);
-//            cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
-//            boxY = 0;
-//            cardBot.setY(boxY);
-//        } else if ( boxY > (mapFrame.getHeight() - cardBot.getHeight()) ) {
-//            //cardBot.setImageDrawable(cardBot_Blocked);
-//            cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
-//            boxY = mapFrame.getHeight() - cardBot.getHeight();
-//            cardBot.setY(boxY);
-//        }
-//        // Horizontal boundaries
-//        else if ( boxX < 0 ) {
-//            //cardBot.setImageDrawable(cardBot_Blocked);
-//            cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
-//            boxX = 0;
-//            cardBot.setX(boxX);
-//        }
-//        else if ( boxX > (mapFrame.getWidth() - cardBot.getWidth()) ) {
-//            //cardBot.setImageDrawable(cardBot_Blocked);
-//            cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
-//            boxX = mapFrame.getWidth() - cardBot.getWidth();
-//            cardBot.setX(boxX);
-//        }
-
 
 
 
@@ -3787,8 +3406,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
             switch (orientation) {
                 case "North":
-                    //boxY -= displacementUnit;
-                    //cardBot.setY(boxY);
                     if (YCoord == 1) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3802,8 +3419,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "East":
-                    //boxX += displacementUnit;
-                    //cardBot.setX(boxX);
                     if (XCoord == nCols) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3817,8 +3432,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "West":
-                    //boxX -= displacementUnit;
-                    //cardBot.setX(boxX);
                     if (XCoord == 1) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3832,8 +3445,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "South":
-                    //boxY += displacementUnit;
-                    //cardBot.setY(boxY);
                     if (YCoord == nRows) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3858,8 +3469,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
             switch (orientation) {
                 case "North":
-                    //boxY += displacementUnit;
-                    //cardBot.setY(boxY);
                     if (YCoord == nRows) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3873,8 +3482,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "East":
-                    //boxX -= displacementUnit;
-                    //cardBot.setX(boxX);
                     if (XCoord == 1) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3888,8 +3495,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "West":
-                    //boxX += displacementUnit;
-                    //cardBot.setX(boxX);
                     if (XCoord == nCols) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3903,8 +3508,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
                     //----
                     break;
                 case "South":
-                    //boxY -= displacementUnit;
-                    //cardBot.setY(boxY);
                     if (YCoord == 1) {
                         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_blocked));
                         CardBotBlocked();
@@ -3926,31 +3529,19 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
         // Right
         if (action_right) {
-            //cardBot_TurnRight = getResources().getDrawable(R.drawable.virtual_cardbot_turn_right);
-            //cardBot.setImageDrawable(cardBot_TurnRight);
             cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_turn_right));
-            //rotateRight(cardBot);
-            //cardBot.setRotation(cardBot.getRotation() + degreeIncrement); // Cf.: https://stackoverflow.com/questions/28259534/how-to-rotate-image-in-imageview-on-button-click-each-time
             rotate_CardBot_right();
         }
 
         // Left
         if (action_left) {
-            //cardBot_TurnLeft = getResources().getDrawable(R.drawable.virtual_cardbot_turn_left);
-            //cardBot.setImageDrawable(cardBot_TurnLeft);
             cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_turn_left));
-            //rotateLeft(cardBot);
-            //cardBot.setRotation(cardBot.getRotation() - degreeIncrement);
             rotate_CardBot_left();
         }
 
         // Back
         if (action_back) {
-            //cardBot_TurnBack = getResources().getDrawable(R.drawable.virtual_cardbot_turn_back);
-            //cardBot.setImageDrawable(cardBot_TurnBack);
             cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_turn_back));
-            //rotateBack(cardBot);
-            //cardBot.setRotation((float) (cardBot.getRotation() + degreeIncrementBack));
             rotate_CardBot_180();
         }
 
@@ -3985,22 +3576,9 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         action_left = false;
         action_back = false;
 
-        //cardBot_GoForward = getResources().getDrawable(R.drawable.virtual_cardbot_go_forward);
-        //cardBot.setImageDrawable(cardBot_GoForward);
         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_go_forward));
 
         adaptPosOnScreen();
-
-//        for (int i = 0; i < dispRepetition; i++) {
-//            handlerMoveDelay.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    // This method will be executed once the timer is over
-//                    adaptPosOnScreen();
-//                }
-//            }, dispDelay * i); // Delay of "delay" [ms]
-//        }
-
 
     }
 
@@ -4012,21 +3590,9 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         action_left = false;
         action_back = false;
 
-        //cardBot_GoBackward = getResources().getDrawable(R.drawable.virtual_cardbot_go_backward);
-        //cardBot.setImageDrawable(cardBot_GoBackward);
         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_go_backward));
 
         adaptPosOnScreen();
-
-//        for (int i = 0; i < dispRepetition; i++) {
-//            handlerMoveDelay.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    adaptPosOnScreen();
-//                }
-//            }, dispDelay * i); // Delay of "delay" [ms] (i.e. total time to execute the movement)
-//        }
-
 
     }
 
@@ -4058,17 +3624,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
         adaptPosOnScreen();
 
-//        for (int i = 0; i < degreeRepetition; i++) {
-//            handlerMoveDelay.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    adaptPosOnScreen();
-//                }
-//            }, degreeDelay * i); // Delay of "delay" [ms] (i.e. total time to execute the movement)
-//        }
-
-
-
     }
 
 
@@ -4099,17 +3654,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
         adaptPosOnScreen();
 
-//        for (int i = 0; i < degreeRepetition; i++) {
-//            handlerMoveDelay.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    adaptPosOnScreen();
-//                }
-//            }, degreeDelay * i); // Delay of "delay" [ms] (i.e. total time to execute the movement)
-//        }
-
-
-
     }
 
 
@@ -4139,28 +3683,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         textViewOrientation.setText(orientation);
 
         adaptPosOnScreen();
-
-//        if (veryFirstRotation) {
-//            for (int i = 0; i < degreeRepetitionBack_VeryFirstRotation; i++) {
-//                handlerMoveDelay.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        adaptPosOnScreen();
-//                    }
-//                }, degreeDelayBack_VeryFirstRotation * i); // Delay of "delay" [ms] (i.e. total time to execute the movement)
-//            }
-//            veryFirstRotation = false;
-//        } else {
-//            for (int i = 0; i < degreeRepetitionBack; i++) {
-//                handlerMoveDelay.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        adaptPosOnScreen();
-//                    }
-//                }, degreeDelayBack * i); // // 1500/90 // Delay of "delay" [ms] (i.e. total time to execute the movement)
-//            }
-//        }
-
 
 
     }
@@ -4200,7 +3722,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
     // Cf.: Rotation Object programmatically, https://stackoverflow.com/questions/1634252/how-to-make-a-smooth-image-rotation-in-android
     public void rotate_CardBot_right() {
         ObjectAnimator rotate = ObjectAnimator.ofFloat(cardBot, "rotation", cardBot.getRotation(), cardBot.getRotation()+90);
-//        rotate.setRepeatCount(10);
         rotate.setDuration(RotationAnimation90Degrees);
         rotate.start();
     }
@@ -4208,7 +3729,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
     public void rotate_CardBot_left() {
         ObjectAnimator rotate = ObjectAnimator.ofFloat(cardBot, "rotation", cardBot.getRotation(), cardBot.getRotation()-90);
-//        rotate.setRepeatCount(10);
         rotate.setDuration(RotationAnimation90Degrees);
         rotate.start();
     }
@@ -4216,7 +3736,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
 
     public void rotate_CardBot_180() {
         ObjectAnimator rotate = ObjectAnimator.ofFloat(cardBot, "rotation", cardBot.getRotation(), cardBot.getRotation()+180);
-//        rotate.setRepeatCount(10);
         rotate.setDuration(RotationAnimation180Degrees);
         rotate.start();
     }
@@ -4360,19 +3879,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         fabClearLast.setOnClickListener(this);
         fabClearAll.setOnClickListener(this);
 
-//        fabMiddleTile.
-//        fabGoForward.
-//        fabGoBackward.
-//        fabTurnRight.
-//        fabTurnLeft.
-//        fabTurnBack.
-//        fabStartRepeat.
-//        fabEndRepeat.
-//        fabTwo.
-//        fabThree.
-//        fabFour.
-//        fabClearLast.
-//        fabClearAll.
     }
 
 
@@ -4720,14 +4226,12 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
             if (responseToMCQ) {
                 Toast.makeText(GeographyActivity.this, "Correct! 😃🎉 the answer is: " + mAnswer, Toast.LENGTH_SHORT).show();
                 // Change battery level
-                // + 20% of battery level
                 //----------
                 changeBatteryLevel(IncreasePointsWhenCorrectResponseToMCQ);
                 //----------
             } else {
                 Toast.makeText(GeographyActivity.this, "Incorrect... 🙁 the answer is: " + mAnswer, Toast.LENGTH_SHORT).show();
                 // Change battery level
-                // - 20% of battery level
                 //----------
                 changeBatteryLevel(DecreasePointsWhenCorrectResponseToMCQ);
                 //----------
@@ -4777,8 +4281,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
     public void randomInitialization() {
 
         // Resetting the cardBot ImageView
-//        cardBot = null;
-//        cardBot = (ImageView) findViewById(R.id.virtual_cardbot);
         cardBot.setImageDrawable(getResources().getDrawable(R.drawable.virtual_cardbot_init));
 
         // Random initialization of the position of the Cardbot on the map
@@ -4972,8 +4474,6 @@ public class GeographyActivity extends AppCompatActivity implements ConnectionSt
         if (batteryLevelInt > 100) {batteryLevelInt = 100;}
         // And taking care of the minimum battery level
         if (batteryLevelInt < 0) {
-            //textViewTask.setText("You completely drained the Cardbot's battery 😭");
-            //textViewTask.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17f);
 
             // Reinitializing the environment
             openGameOverDialog();

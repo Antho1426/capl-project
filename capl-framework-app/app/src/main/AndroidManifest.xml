@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ch.epfl.mobots.capl_framework">
+
+
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+
+    <!-- Line "android:hardwareAccelerated="true"" is important for playing the video in the html files of the info menus-->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true" >
+        <!--    Android:java.lang.OutOfMemoryError: Failed to allocate a 23970828 byte allocation with 2097152 free bytes and 2MB until OOM, Cf.: https://stackoverflow.com/questions/32244851/androidjava-lang-outofmemoryerror-failed-to-allocate-a-23970828-byte-allocatio-->
+        <!--    "Exception 'open failed: EACCES (Permission denied)' on Android", cf.: https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android-->
+
+        <activity
+            android:name="ch.epfl.mobots.capl_framework.ui.DeviceListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ch.epfl.mobots.capl_framework.ui.FreeGameActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="ch.epfl.mobots.capl_framework.ui.HelpActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="ch.epfl.mobots.capl_framework.ui.MainSettingsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="ch.epfl.mobots.capl_framework.ui.ServicesPresentActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            tools:ignore="LockedOrientationActivity" />
+
+
+        <service
+            android:name="ch.epfl.mobots.capl_framework.bluetooth.BleAdapterService"
+            android:enabled="true" />
+
+
+
+
+
+
+<!--        Making sure capl-framework-app has not the same "signature" as the original capl-app-->
+<!--        (in order to install both apps on the same Android device)-->
+<!--        &ndash;&gt; Cf.: Install shows error in console: INSTALL FAILED CONFLICTING PROVIDER,-->
+<!--        https://stackoverflow.com/questions/16267785/install-shows-error-in-console-install-failed-conflicting-provider-->
+
+<!--        Initial "authorities" for the original capl-app:-->
+<!--        android:authorities="com.bluetooth.mwoolley.android.fileprovider"-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="ch.epfl.mobots.capl_framework.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+
+
+
+
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+
+</manifest>

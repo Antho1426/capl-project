@@ -81,75 +81,6 @@ public class OpenCVTestActivity2 extends AppCompatActivity {
 
 
 
-    // Cf.: https://github.com/akshika47/OpenCV-Android-Object-Detection
-    //-----------------------------
-//    private static final int REQUEST_PERMISSION = 100;
-//    private int w, h;
-//    private CameraBridgeViewBase mOpenCvCameraView;
-//    TextView tvName;
-//    Scalar RED = new Scalar(255, 0, 0);
-//    Scalar GREEN = new Scalar(0, 255, 0);
-//    FeatureDetector detector;
-//    DescriptorExtractor descriptor;
-//    DescriptorMatcher matcher;
-//    Mat descriptors2,descriptors1;
-//    Mat img1;
-//    MatOfKeyPoint keypoints1,keypoints2;
-//
-//    static {
-//        if (!OpenCVLoader.initDebug())
-//            Log.d("ERROR", "Unable to load OpenCV");
-//        else
-//            Log.d("SUCCESS", "OpenCV loaded");
-//    }
-//
-//    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-//        @Override
-//        public void onManagerConnected(int status) {
-//            switch (status) {
-//                case LoaderCallbackInterface.SUCCESS: {
-//                    Log.i(TAG, "OpenCV loaded successfully");
-//                    mOpenCvCameraView.enableView();
-//                    try {
-//                        initializeOpenCVDependencies();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                break;
-//                default: {
-//                    super.onManagerConnected(status);
-//                }
-//                break;
-//            }
-//        }
-//    };
-//
-//    private void initializeOpenCVDependencies() throws IOException {
-//        img = new Mat();
-////        mOpenCvCameraView.enableView();
-////        detector = FeatureDetector.create(FeatureDetector.ORB);
-////        descriptor = DescriptorExtractor.create(DescriptorExtractor.ORB);
-////        matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
-////        img1 = new Mat();
-////        AssetManager assetManager = getAssets();
-////        InputStream istr = assetManager.open("a.jpeg");
-////        Bitmap bitmap = BitmapFactory.decodeStream(istr);
-////        Utils.bitmapToMat(bitmap, img1);
-////        Imgproc.cvtColor(img1, img1, Imgproc.COLOR_RGB2GRAY);
-////        img1.convertTo(img1, 0); //converting the image to match with the type of the cameras image
-////        descriptors1 = new Mat();
-////        keypoints1 = new MatOfKeyPoint();
-////        detector.detect(img1, keypoints1);
-////        descriptor.compute(img1, keypoints1, descriptors1);
-//    }
-    //-----------------------------
-
-
-
-
-
-
 
 
 
@@ -163,18 +94,6 @@ public class OpenCVTestActivity2 extends AppCompatActivity {
         //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         OpenCVLoader.initDebug();
 
-//        buttonTimer = new Timer();
-//        buttonTimer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        OpenCVLoader.initDebug();
-//                    }
-//                });
-//            }
-//        }, 5000);
 
     }
 
@@ -185,16 +104,6 @@ public class OpenCVTestActivity2 extends AppCompatActivity {
 
     public void applyFilter(View view) {
         Log.i(TAG, "Entering applyFilter");
-
-        //-----
-//        Mat img = null;
-//        //Mat img2 = new Mat();
-//        try {
-//            img = Utils.loadResource(getApplicationContext(), R.drawable.test);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        //-----
 
         //-----
         Bitmap selectedImage_Bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.test);

@@ -88,6 +88,8 @@ public class BleAdapterService extends Service implements Runnable{
 
 
     // UUIDs
+    // A universally unique identifier (UUID) is a 128-bit number used to identify information in
+    // computer systems.
 
 
     public static String GENERICACCESS_SERVICE_UUID = "0000180000001000800000805F9B34FB";
