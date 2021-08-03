@@ -475,7 +475,7 @@ public class ComputerVision extends Application {
         //□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
         //□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 
-        //Load native opencv library
+        //Load native opencv library (in case using Java outside of the Android frame)
         //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
 

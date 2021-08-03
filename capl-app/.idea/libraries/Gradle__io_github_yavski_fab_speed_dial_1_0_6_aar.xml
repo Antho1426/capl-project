@@ -1,8 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: io.github.yavski:fab-speed-dial:1.0.6@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fab-speed-dial-1.0.6.aar/7bcb724b116eb1d8b82280081da35864/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fab-speed-dial-1.0.6.aar/7bcb724b116eb1d8b82280081da35864/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f2f0c5bedf9db43463d295f2a5b7cfc/fab-speed-dial-1.0.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f2f0c5bedf9db43463d295f2a5b7cfc/fab-speed-dial-1.0.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5f2f0c5bedf9db43463d295f2a5b7cfc/fab-speed-dial-1.0.6/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.yavski/fab-speed-dial/1.0.6/ecce1a60b7d8523fd5078ad9c47abe375f4ab4ff/fab-speed-dial-1.0.6-javadoc.jar!/" />
